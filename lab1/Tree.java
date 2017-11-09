@@ -1,17 +1,33 @@
 package lab1;
+/**
+ * The class {@code Tree} provides calculation of simple mathematical expressions
+ * by building of modified priority queue with minimum from elements of class {@code Node}.   
+ */
+
 import java.util.*;
 
-public class Tree {
+class Tree {
+	/** an expression to be calculated*/
 	private String expression;
-	private String[] operandStr, operators;
+	/** an array of operands */ 
 	private double[] operandNum;
-	private int[] position, openBrackets, closeBrackets;
+	/** arrays containing positions of opening and closing round brackets */
+	private int[] openBrackets, closeBrackets;
+	/** flag indicates if the expression starts from minus */
 	private boolean flag=false;
 	
+	/** a list of operators */
 	private List<String> listOfOperators=new ArrayList<>();
-	private List<String> listOfOperands=new ArrayList<>();
+	/** a list of operators priorities */
 	private List<Integer> listOfPriorities=new ArrayList<>();
+	/** a list of operators positions */
+	private List<Integer> position=new ArrayList<>();
 	
+    /**
+     * Constructs a <code>Tree</code>. 
+     * The constructor also checks if the expression starts with + or -.  
+     * @param ex is an expression to be calculated 
+     */
 	public Tree(String ex) {
 		if (ex.startsWith("+")) expression=ex.substring(1);
 		else {
@@ -21,74 +37,67 @@ public class Tree {
 			}
 			else expression=ex;
 		}
-		
-	}
-	private void parsing() {
-		operandStr=expression.split("\\+|-|\\*|\\/|\\(|\\)");
-//		System.out.println(String.join(" ",operandStr));
-		for (String s:operandStr) {
-			if (s.length()!=0) listOfOperands.add(s);
-		}
-//		System.out.println(listOfOperands.toString());
-		operandNum=new double[listOfOperands.size()];
-		for (int i=0; i<listOfOperands.size();i++) {
-			operandNum[i]=Double.valueOf(listOfOperands.get(i));
-		}
-		if (flag) operandNum[0]=-operandNum[0];
-		operators=expression.split("\\d|\\(|\\)");
-//		System.out.println(Arrays.toString(operandNum));
-//		System.out.println("<<"+operators[0].length()+">>");
-//		System.out.println(String.join(" ",operators));
-//		List<String> l=Arrays.asList(operators);
-//		System.out.println(l.toString());
-		
-		
-	}
-
-	public boolean check() {
-		parsing();
-		if (expression.endsWith("\\+|-|\\*|\\/")) return false;
-		for (String s:operators) {
-			if (s.length()>1) return false;
-			if (s.length()==1&&!s.equals(".")) listOfOperators.add(s);
-		}		
-		//проверить, что длину operators. должна быть 1. Если 0, то удалить, 2 - ошибка. Строка
-		//Строка expression не должна заканчиваться */+-
-//		System.out.println(listOfOperators.toString());
-		return true;
 	}
 	
+	/**
+     * Initializes some fields depending on the field "expression" value
+     * using static methods from the utility class {@code MathParser}.
+     * Checks the spelling of the expression.
+     */
+	public String check() {
+		try{
+			operandNum=MathParser.getOperands(expression);
+			listOfOperators=MathParser.getOperatorsStr(expression);
+			openBrackets=MathParser.findSymbolIndices('(', expression);
+			closeBrackets=MathParser.findSymbolIndices(')', expression);			
+		}catch(Exception e) {return "Wrong number format";}
+		char c=expression.charAt(expression.length()-1);
+		if (Character.isLetter(c)) c=Character.toLowerCase(c);
+		if (!Character.isDigit(c)&&c!=')'&&c!='a'&&c!='b'&&c!='c'&&c!='d'&&c!='e'&&c!='f') return "Wrong operators";
+		for (String s:listOfOperators) {
+			if (s.length()>1) return "Wrong operators";
+		}
+		Deque<Character> brackets=new LinkedList<>();
+		for (char ch:expression.toCharArray()) {
+			if (ch=='(') brackets.push(c);
+			if (ch==')'&&brackets.isEmpty()) return "Wrong brackets";
+			if (ch==')'&&!brackets.isEmpty()) brackets.pop();
+		}
+		if (!brackets.isEmpty()) return "Wrong brackets";
+		return "Ok";
+	}
+	
+	/**
+     * Finds operators position in the expression
+     */
 	private void findOperatorPosition() {
-		position=new int[listOfOperators.size()];
 		int index=0;
-		for (int i=0;i<position.length;i++) {
-			position[i]=expression.indexOf(listOfOperators.get(i), index);
-			index=position[i]+1;
+		for (int i=0;i<listOfOperators.size();i++) {
+			position.add(expression.indexOf(listOfOperators.get(i), index));
+			index=position.get(i)+1;
 		}
-//		System.out.println(Arrays.toString(position));
 
 	}
 	
-	private void findBrackets() {
-		String[] s=expression.split("\\("); 
-		int number=s.length-1;
-		openBrackets=new int[number];
-		closeBrackets=new int[number];
-		int index=0;
-		for (int i=0;i<openBrackets.length;i++) {
-			openBrackets[i]=expression.indexOf('(', index);
-			index=openBrackets[i]+1;
-		}
-		index=0;
-		for (int i=0;i<closeBrackets.length;i++) {
-			closeBrackets[i]=expression.indexOf(")", index);
-			index=closeBrackets[i]+1;
-		}
-//		System.out.println(Arrays.toString(openBrackets));
-//		System.out.println(Arrays.toString(closeBrackets));
-	}
+	/**
+     * Provides calculation with negative numbers, e.g., 1+(-1)  
+     * Simplifies calculation by changing - to + and / to *.
+     */
 	private void simplify() {
 		List<String> list=new ArrayList<>();
+		if (flag) {
+			operandNum[0]=-operandNum[0];
+		}
+		if (listOfOperators.size()>=operandNum.length) {
+			for (int i=0;i<listOfOperators.size();i++) {
+				if (expression.charAt(position.get(i)-1)=='(') {
+					operandNum[i]=(expression.charAt(position.get(i))=='-')? -operandNum[i]:operandNum[i];
+					listOfOperators.remove(i);
+					position.remove(i);
+					i--;
+				}
+			}
+		}
 		for (int i=0;i<listOfOperators.size();i++) {
 			if (listOfOperators.get(i).equals("-")) {
 				list.add("+");
@@ -101,11 +110,13 @@ public class Tree {
 				else list.add(listOfOperators.get(i));
 			}			
 		}
-//		System.out.println(Arrays.toString(operandNum));
 		listOfOperators=list;
-		
-		
 	}
+	
+	/**
+     * Provides calculation of operator priority in method getPriorities()
+     * @param pos is operator position in expression  
+     */	
 	private int getMulti(int pos) {
 		int open=0;
 		int close=0;
@@ -118,15 +129,21 @@ public class Tree {
 		return open-close;
 	}
 	
+	/**
+     * Calculates the operator priority
+     */	
 	private void getPriorities() {
 		for (int i=0;i<listOfOperators.size();i++) {
-			if (listOfOperators.get(i).equals("+")) listOfPriorities.add(2*getMulti(position[i]));
-			else listOfPriorities.add(2*getMulti(position[i])+1);
+			if (listOfOperators.get(i).equals("+")) 
+				listOfPriorities.add(2*getMulti(position.get(i)));
+			else listOfPriorities.add(2*getMulti(position.get(i))+1);
 		}
-//		System.out.println("Приоритеты ");
-//		System.out.println(listOfPriorities.toString());
 	}
 	
+	/**
+     * Builds a tree from the list of operators depending on their priority using elements of class {@code Node}.
+     * Returns a node corresponding to the last operator. 
+     */	
 	private Node buildTree() {
 		Node node=null;
 		Operator o=null;
@@ -171,23 +188,26 @@ public class Tree {
 		node.addValue(operandNum[operandNum.length-1]);
 		return node;
 	}
-	
+	/**
+     * Returns the root of the builded tree, i.e., element of class {@code Node} with the lowest priority.
+     * @param node is some node in the tree 
+     */		
 	private Node getRoot(Node node) {
 		if (node.getParent()==null) return node;
 		Node n=node.getParent();
 		return getRoot(n);
 	}
-
+	
+	/**
+     * Executes supporting methods.
+     * Calculates the expression value. 
+     */
 	public double calculate() {
 		findOperatorPosition();
-		findBrackets();
 		simplify();
 		getPriorities();
 		Node n=buildTree();
-//		System.out.println(n.toString());
 		n=getRoot(n);
-//		System.out.println(n.toString());
-		
 		return n.getResult();
 	}
 
