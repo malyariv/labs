@@ -13,8 +13,12 @@ class Tree {
 	private double[] operandNum;
 	/** arrays containing positions of opening and closing round brackets */
 	private int[] openBrackets, closeBrackets;
-	/** flag indicates if the expression starts from minus */
-	private boolean flag=false;
+	/** flag indicates if the expression starts with minus */
+	private boolean startWithMinusFlag=false;
+	/** flag indicates if the expression is a number */
+	private boolean numberFlag=false;
+	/** value if the expression is a number */
+	private double number=0;
 	
 	/** a list of operators */
 	private List<String> listOfOperators=new ArrayList<>();
@@ -29,14 +33,7 @@ class Tree {
      * @param ex is an expression to be calculated 
      */
 	public Tree(String ex) {
-		if (ex.startsWith("+")) expression=ex.substring(1);
-		else {
-			if (ex.startsWith("-")) {
-				expression=ex.substring(1);
-				flag=true;
-			}
-			else expression=ex;
-		}
+		expression=ex;
 	}
 	
 	/**
@@ -45,6 +42,16 @@ class Tree {
      * Checks the spelling of the expression.
      */
 	public String check() {
+		if (expression.equals("")) return "";
+		try {
+			number=Double.valueOf(expression);
+			numberFlag=true;
+		}catch(Exception e) {}
+		if (MathParser.startsWithPlus(expression)) expression=expression.substring(1);
+		if (MathParser.startsWithMinus(expression)) {
+				expression=expression.substring(1);
+				startWithMinusFlag=true;
+			}
 		try{
 			operandNum=MathParser.getOperands(expression);
 			listOfOperators=MathParser.getOperatorsStr(expression);
@@ -72,11 +79,10 @@ class Tree {
      */
 	private void findOperatorPosition() {
 		int index=0;
-		for (int i=0;i<listOfOperators.size();i++) {
-			position.add(expression.indexOf(listOfOperators.get(i), index));
-			index=position.get(i)+1;
+		for (String s:listOfOperators) {
+			position.add(expression.indexOf(s, index));
+			index=position.get(position.size()-1)+1;
 		}
-
 	}
 	
 	/**
@@ -85,7 +91,7 @@ class Tree {
      */
 	private void simplify() {
 		List<String> list=new ArrayList<>();
-		if (flag) {
+		if (startWithMinusFlag) {
 			operandNum[0]=-operandNum[0];
 		}
 		if (listOfOperators.size()>=operandNum.length) {
@@ -203,6 +209,7 @@ class Tree {
      * Calculates the expression value. 
      */
 	public double calculate() {
+		if (numberFlag) return number;
 		findOperatorPosition();
 		simplify();
 		getPriorities();

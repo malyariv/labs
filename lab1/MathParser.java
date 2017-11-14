@@ -16,6 +16,19 @@ public class MathParser {
 	private MathParser(){}
 	
 	/**
+	 * Returns true if string starts with plus
+	 */
+	public static boolean startsWithPlus(String e) {
+		return e.charAt(0)=='+';
+	}
+	/**
+	 * Returns true if string starts with minus
+	 */	
+	public static boolean startsWithMinus(String e) {
+		return e.charAt(0)=='-';
+		
+	}
+	/**
 	 * Parses the expressions and returns operands as a list of String  
 	 * @param expression is expression to be parsed  
 	 */

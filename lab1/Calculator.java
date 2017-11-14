@@ -22,7 +22,7 @@ public class Calculator {
 	private void run() {
 		Tree tree;
 		Scanner scanner=new Scanner(System.in);
-		System.out.println("Hi! You can calculate your expression here.\nYou can also use binary, octonary and hexadecimal numbers using prefixes bx, ox and hx, respectively. Enjoy! \nPlease, print 'exit' to quit\n");
+		System.out.println("Hi! You can calculate your expression here.\nYou can also use binary, octonary and hexadecimal numbers using prefixes bx, ox and hx, respectively. Enjoy! \nPlease, enter 'exit' to quit\n");
 		while(true) {
 			System.out.println("Enter your expression");
 			String s=scanner.nextLine();
@@ -30,12 +30,20 @@ public class Calculator {
 			
 			tree=new Tree(s);
 			String str=tree.check();
-			if (!str.equals("Ok")) {
+			if (!str.equalsIgnoreCase("Ok")) {
 				System.out.println("Wrong expression. "+str);
 				continue;
 			}
 			System.out.println("="+tree.calculate());
 		}
+	}
+	/**
+     * The following method duplicates calculation ability of method run() and returns number result for JUnit tests.
+     */
+	public double calculate(String expression) {
+		Tree tree =new Tree(expression);
+		tree.check();
+		return tree.calculate();
 	}
 
 }
