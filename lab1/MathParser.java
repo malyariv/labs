@@ -33,7 +33,7 @@ public class MathParser {
 	 * @param expression is expression to be parsed  
 	 */
 	public static List<String> getOperandsStr(String expression) {
-		String[] operandStr=expression.split("\\+|-|\\*|\\/|\\(|\\)");
+		String[] operandStr=expression.split("\\+|-|\\*|\\/|\\(|\\)|\\^");
 		List<String> listOfOperands=new ArrayList<>();
 		for (String s:operandStr) {
 			if (s.length()!=0) listOfOperands.add(s);

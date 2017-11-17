@@ -17,7 +17,8 @@ class Node {
 	private Node parent;
 	/** pointer to the children's nodes, i.e., ones with higher priority */
 	private List<Node> children=new ArrayList<>();
-	
+	/** flag helps to divide base and exponent*/  
+	private boolean powerFlag=true;
     /**
      * Constructs a <code>Node</code> and initializes some fields.  
      * @param o is a type of operator
@@ -68,13 +69,29 @@ class Node {
      */
 	public double getResult() {
 		double result=(o==Operator.ADD)?0:1;
-		if (o==Operator.ADD) {
-			for (Double d:values) result+=d;
-			for (Node n:children) result+=n.getResult();
-		}
-		else {
-			for (Double d:values) result*=d;
-			for (Node n:children) result*=n.getResult();
+		switch (o) {
+			case ADD: 
+				for (Double d:values) result+=d; 
+				for (Node n:children) result+=n.getResult();
+				break;
+			case MULTI:
+				for (Double d:values) result*=d;
+				for (Node n:children) result*=n.getResult();
+				break;
+			default:
+				if(values.size()+children.size()>2) throw new MultiExponentException();
+				if (values.size()==2) {
+					result=Math.pow(values.get(0), values.get(1));
+					break;
+				}
+				if (children.size()==2) {
+					result=Math.pow(children.get(0).getResult(), children.get(1).getResult());
+					break;
+				}
+				if (powerFlag) {
+					result=Math.pow(values.get(0), children.get(0).getResult());
+					}
+				else result=Math.pow(children.get(0).getResult(), values.get(0));
 		}
 		return result;
 	}
@@ -100,6 +117,7 @@ class Node {
      */	
 	public void addChild(Node n) {
 		children.add(n);
+		if (values.size()==0) powerFlag=false;
 	}
     /**
      * Generates a string containing some useful information about the current node.  

@@ -61,16 +61,20 @@ class Tree {
 		char c=expression.charAt(expression.length()-1);
 		if (Character.isLetter(c)) c=Character.toLowerCase(c);
 		if (!Character.isDigit(c)&&c!=')'&&c!='a'&&c!='b'&&c!='c'&&c!='d'&&c!='e'&&c!='f') return "Wrong operators";
+		String prev="";
 		for (String s:listOfOperators) {
 			if (s.length()>1) return "Wrong operators";
+			if (s.equals("^")&&prev.equals("^")) return "Wrong operators";
+			prev=s;
 		}
 		Deque<Character> brackets=new LinkedList<>();
 		for (char ch:expression.toCharArray()) {
-			if (ch=='(') brackets.push(c);
+			if (ch=='(') brackets.push(ch);
 			if (ch==')'&&brackets.isEmpty()) return "Wrong brackets";
 			if (ch==')'&&!brackets.isEmpty()) brackets.pop();
 		}
 		if (!brackets.isEmpty()) return "Wrong brackets";
+		
 		return "Ok";
 	}
 	
@@ -140,9 +144,11 @@ class Tree {
      */	
 	private void getPriorities() {
 		for (int i=0;i<listOfOperators.size();i++) {
-			if (listOfOperators.get(i).equals("+")) 
-				listOfPriorities.add(2*getMulti(position.get(i)));
-			else listOfPriorities.add(2*getMulti(position.get(i))+1);
+			switch (listOfOperators.get(i)) {
+			case "+": listOfPriorities.add(3*getMulti(position.get(i))); break;
+			case "*": listOfPriorities.add(3*getMulti(position.get(i))+1); break;
+			default: listOfPriorities.add(3*getMulti(position.get(i))+2);
+			}
 		}
 	}
 	
@@ -154,7 +160,11 @@ class Tree {
 		Node node=null;
 		Operator o=null;
 		for (int i=0; i<listOfOperators.size();i++) {
-			o=listOfOperators.get(i).equals("+")? Operator.ADD: Operator.MULTI;
+			switch (listOfOperators.get(i)) {
+				case "+": o=Operator.ADD; break;
+				case "*": o=Operator.MULTI; break;
+				default: o=Operator.POWER;
+			}
 			int pr=listOfPriorities.get(i);
 			if (node==null) {
 				node=new Node(o, pr);
