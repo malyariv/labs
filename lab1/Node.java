@@ -1,6 +1,6 @@
 package lab1;
 /**
- * The class {@code Node} is a basic element to build a tree, like a Priority Queue, 
+ * The class {@code Node} is a basic element to build a tree, like a priority queue, 
  * to calculate simple mathematical expressions
  */
 import java.util.*;

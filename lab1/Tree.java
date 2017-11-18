@@ -1,7 +1,7 @@
 package lab1;
 /**
  * The class {@code Tree} provides calculation of simple mathematical expressions
- * by building of modified priority queue with minimum from elements of class {@code Node}.   
+ * by building of modified priority queue with a minimum from elements of class {@code Node}.   
  */
 
 import java.util.*;

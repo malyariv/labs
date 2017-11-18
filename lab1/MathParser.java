@@ -3,7 +3,7 @@ package lab1;
  * The class {@code MathParser} is a utility class 
  * which provides parsing of simple mathematical expressions
  * with decimal, binary, octonary and hexadecimal numbers
- * and standard operators (+,-,*,/)   
+ * and standard operators (+,-,*,/,^)   
  */
 import java.util.*;
 

@@ -1,7 +1,7 @@
 package lab1;
 /**
- * The class {@code Calculator} is a console application 
- * to calculate simple mathematical expressions 
+ * The class {@code Calculator}, implementing interface {@code ConsoleCalculator},
+ * is a console application to calculate simple mathematical expressions 
  * with decimal, binary, octonary and hexadecimal numbers 
  * using {+,-,*,/, ^} and  round brackets.
  */
@@ -29,6 +29,9 @@ public class Calculator implements ConsoleCalculator {
 			String str=checkSpelling(s);
 			if (!str.equalsIgnoreCase("Ok")) {
 				printErrorMessage(str);
+				try {
+					Thread.sleep(100);
+				}catch(InterruptedException e) {}
 				continue;
 			}
 			try {

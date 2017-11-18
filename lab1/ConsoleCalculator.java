@@ -1,7 +1,7 @@
 package lab1;
 /**
  * The interface {@code ConsoleCalculator} describes 
- * basic methods of the class using a standard console IO interface
+ * basic methods of console calculator with a standard console IO interface
  */
 public interface ConsoleCalculator {
 	/**
