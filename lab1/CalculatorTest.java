@@ -10,35 +10,67 @@ import org.junit.Test;
 
 public class CalculatorTest {
 	
-	private Calculator c=new Calculator();;
-
-
+	private Calculator c=new Calculator();
+	
 	@Test
 	public void testCalculate() {
-		Double res=c.calculate("1");
-		assertEquals(Double.valueOf(1.0),res);
+		String res=c.calculate("1");
+		assertEquals("1.0",res);
 		
 		res=c.calculate("+1");
-		assertEquals(Double.valueOf(1),res);
+		assertEquals("1.0",res);
 		
 		res=c.calculate("-1");
-		assertEquals(Double.valueOf(-1),res);
+		assertEquals("-1.0",res);
+
+		res=c.calculate("");
+		assertEquals("Wrong expression. ",res);
+		
+		res=c.calculate("1+((1+1)");
+		assertEquals("Wrong expression. Wrong brackets",res);
+		
+		res=c.calculate("1.1.1+((1+1)");
+		assertEquals("Wrong expression. Wrong number format",res);
+		
+		res=c.calculate("1+");
+		assertEquals("Wrong expression. Wrong operators",res);
+		
+		res=c.calculate("2^2^2");
+		assertEquals("Wrong expression. Wrong operators",res);
+		
+		res=c.calculate("(2+4/2)^(1+2*(1+1)-2)^(9/3+1)");
+		assertEquals("Wrong expression. Wrong operators",res);
+		
+		res=c.calculate("2+2+2");
+		assertEquals("6.0",res);
 		
 		res=c.calculate("-1/5");
-		assertEquals(Double.valueOf(-0.2),res);
+		assertEquals("-0.2",res);
 		
 		res=c.calculate("1+(0.2-bx01)*5");
-		assertEquals(Double.valueOf(-3.0),res);
+		assertEquals("-3.0",res);
 		
 		res=c.calculate("1+(0.2-bx01)*5+(-2*(5+1)+ox10*2)*hxa");
-		assertEquals(Double.valueOf(37.0),res);
+		assertEquals("37.0",res);
 		
 		res=c.calculate("1+(0.2*5+2/4-0.5)*2");
-		assertEquals(Double.valueOf(3.0),res);
+		assertEquals("3.0",res);
 		
 		res=c.calculate("1+(-0.2*5+2/4-0.5)*2");
-		assertEquals(Double.valueOf(-1.0),res);
-
+		assertEquals("-1.0",res);
+		
+		res=c.calculate("2^(2+bx01)");
+		assertEquals("8.0",res);
+		
+		res=c.calculate("(2+hxa)^(1+bx01)");
+		assertEquals("144.0",res);
+		
+		res=c.calculate("(2+hxa)^bx10");
+		assertEquals("144.0",res);
+		
+		res=c.calculate("(2+hxa)^bx10/12+1");
+		assertEquals("13.0",res);
 	}
+	
 
 }
