@@ -1,7 +1,7 @@
 package lab1;
 /**
  * The class {@code Calculator}, implementing interface {@code ConsoleCalculator},
- * is a console application to calculate simple mathematical expressions 
+ * is a class for calculations of simple mathematical expressions 
  * with decimal, binary, octonary and hexadecimal numbers 
  * using {+,-,*,/, ^} and  round brackets.
  */
@@ -9,41 +9,6 @@ import java.util.*;
 
 public class Calculator implements ConsoleCalculator {
 
-	/**
-     * Runs the application by running the private method run().
-     */
-	public static void main(String[] args) {
-		new Calculator().run();
-	}
-	/**
-     * The method provides a standard console IO interface, expression spelling check  and calculations 
-     * by means of class {@code Tree} variable.
-     */
-	private void run() {
-		String s;
-		System.out.println("Hi! You can calculate your expression here.\nYou can also use binary, octonary and hexadecimal numbers using prefixes bx, ox and hx, respectively. Enjoy! \nPlease, enter 'exit' to quit\n");
-
-		while(true) {
-			s=readExpression();
-			if(s.equals("exit")) return;
-			String str=checkSpelling(s);
-			if (!str.equalsIgnoreCase("Ok")) {
-				printErrorMessage(str);
-				try {
-					Thread.sleep(100);
-				}catch(InterruptedException e) {}
-				continue;
-			}
-			try {
-				printAnswer("="+calculate(s));
-			}catch(MultiExponentException e) {
-				printErrorMessage("Wrong expression. Wrong operators");
-			 }
-		}
-	}
-	
-	
-	
 	/**
      * Reads an expression from a standard console.
      */

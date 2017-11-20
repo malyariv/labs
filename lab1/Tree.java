@@ -47,7 +47,9 @@ class Tree {
 			number=Double.valueOf(expression);
 			numberFlag=true;
 		}catch(Exception e) {}
-		if (MathParser.startsWithPlus(expression)) expression=expression.substring(1);
+		if (MathParser.startsWithPlus(expression)) {
+			expression=expression.substring(1);
+		}
 		if (MathParser.startsWithMinus(expression)) {
 				expression=expression.substring(1);
 				startWithMinusFlag=true;
@@ -57,7 +59,9 @@ class Tree {
 			listOfOperators=MathParser.getOperatorsStr(expression);
 			openBrackets=MathParser.findSymbolIndices('(', expression);
 			closeBrackets=MathParser.findSymbolIndices(')', expression);			
-		}catch(Exception e) {return "Wrong number format";}
+		}catch(Exception e) {
+			return "Wrong number format";
+		 }
 		char c=expression.charAt(expression.length()-1);
 		if (Character.isLetter(c)) c=Character.toLowerCase(c);
 		if (!Character.isDigit(c)&&c!=')'&&c!='a'&&c!='b'&&c!='c'&&c!='d'&&c!='e'&&c!='f') return "Wrong operators";
