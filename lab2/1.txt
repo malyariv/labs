@@ -1,1 +1,15 @@
+Абстрактная фабрика
+- Фабрика Equipment
+- Фабрика Chemicals
+
+abs Equipment
+- abs Containers
+- abs Furniture
+- abs Kits
+
+abs Chemicals
+- abs Powders
+- abs Liquids
+- abs Substrates
+
 
