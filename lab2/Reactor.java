@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Reactor implements IFReactor {
 	private List<IFChemicals> reagents;
-	private List<IFChemicals> products;
+	private List<IFChemicals> products=new ArrayList<>();
 	
 	
 	private void getProducts(Reaction reaction) {
@@ -22,24 +22,19 @@ public class Reactor implements IFReactor {
 		double minMol=1000000000000.0;
 		for (int i=0;i<reagents.size();i++) {
 			IFChemicals c=reagents.get(i);
-			double d=0.0;
-			if (c.getState()==State.POWDER) {
-				d=10.0/c.getMolarMass()/coef[i];
-				if (d<minMol) {
-					minMol=d;
-				}
-				mol.put(d,c.getName());
-			}
-			if (c.getState()==State.LIQUID) {
-				d=10.0*c.getDensity()/c.getMolarMass()/coef[i];
-				if (d<minMol) {
-					minMol=d;
-				}
-				mol.put(d,c.getName());
-			}
+			double d;
 			if (c.getState()==State.GAS) {
-				mol.put(Double.POSITIVE_INFINITY,c.getName());
+				d=1000;
 			}
+			else {
+				d=10.0;
+			}
+			d=d/c.getMolarMass()/coef[i];
+			if (c.getState()==State.LIQUID||c.getState()==State.GAS) d=d*c.getDensity();
+			if (d<minMol) {
+					minMol=d;
+			}
+			mol.put(d,c.getName());
 		}
 		return minMol;
 	}
@@ -47,43 +42,14 @@ public class Reactor implements IFReactor {
 	public void execute(Reaction reaction, List<IFChemicals> chem) {
 		reagents=new ArrayList<>(chem);
 		getProducts(reaction);
-		
-		StringBuilder sb=new StringBuilder();
-		int[] coef=reaction.getReagentsCoeff();
-		int j=0;
-		for (IFChemicals c:reagents) {
-			if(coef[j]>1) {
-				sb.append(coef[j]);
-				sb.append("*");
-				j++;
-			}
-			else j++;
-			sb.append(c.getFormula());
-			sb.append(" + ");
-		}
-		String str=sb.toString();
-		str=str.substring(0, str.length()-3);
-		sb=new StringBuilder(str);
-		sb.append(" -> ");
-		coef=reaction.getProductsCoeff();
-		j=0;
-		for (IFChemicals c:products) {
-			if(coef[j]>1) {
-				sb.append(coef[j]);
-				sb.append("*");
-				j++;
-			}
-			else j++;
-			sb.append(c.getFormula());
-			sb.append(" + ");
-		}
-		str=sb.toString();
-		str=str.substring(0, str.length()-3);
-		System.out.println(str);
+		System.out.println(reaction.getEquation());
 		System.out.println("\tReagents");
 		for (IFChemicals c:reagents) {
-			if (c.getState()==State.POWDER) System.out.println("We take 10 mg of "+c.getName()+" powder.");
-			if (c.getState()==State.LIQUID) System.out.println("We take 10 ml of "+c.getName()+" pure solution.");
+			switch (c.getState()) {
+				case POWDER: System.out.println("We take 10 mg of "+c.getName()+" powder."); break;
+				case LIQUID: System.out.println("We take 10 ml of "+c.getName()+" pure solution."); break;
+				default: System.out.println("We perform in "+c.getName()); 
+			}
 		}
 		System.out.println("\n\tOperations");
 		new Operations().execute(reaction.getCondition());
@@ -97,7 +63,7 @@ public class Reactor implements IFReactor {
 		int[] coeff=reaction.getProductsCoeff();
 		for (int i=0;i<products.size();i++) {
 			IFChemicals c=products.get(i);
-			sb=new StringBuilder("We get ");
+			StringBuilder sb=new StringBuilder("We get ");
 			if (c.getState()==State.POWDER) {
 				String s=String.format("%.2f", mol*coeff[i]*c.getMolarMass());
 				sb.append(s);

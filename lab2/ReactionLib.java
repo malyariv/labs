@@ -24,6 +24,7 @@ public class ReactionLib {
 		reaction.setYield(0.75);
 		reaction.setReagentsCoeff(new int[] {1,2});
 		reaction.setProductsCoeff(new int[] {1,1,2});
+		reaction.setEquation("Cu+2*H2SO4 -> CuSO4+SO2+2H2O");
 		lib.put("blue vitriol", reaction);
 		lib.put("copper(II) sulfate", reaction);
 		lib.put("cupric sulfate", reaction);

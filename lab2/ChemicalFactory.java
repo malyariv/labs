@@ -54,9 +54,12 @@ public class ChemicalFactory {
 		map.put("OxideSulfurIV", sc);
 	}
 	
-	public Substance getSubstance(String s) {
+	//private 
+	
+	
+	public Substance getSubstance(String classname) {
 		Substance subst=new Substance();
-		SubstanceConfig sc=map.get(s);
+		SubstanceConfig sc=map.get(classname);
 		subst.setName(sc.getName());
 		subst.setFormula(sc.getFormula());
 		subst.setMolarMass(sc.getMolarMass());

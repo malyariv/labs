@@ -8,7 +8,14 @@ public class Reaction {
 	private Condition condition;
 	private double yield;
 	private int[] reagentsCoeff, productsCoeff;
+	private String equation;
 	
+	public String getEquation() {
+		return equation;
+	}
+	public void setEquation(String equation) {
+		this.equation = equation;
+	}
 	public int[] getReagentsCoeff() {
 		return reagentsCoeff.clone();
 	}
