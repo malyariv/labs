@@ -1,0 +1,62 @@
+package dataclasses;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Reaction {
+    private List<String> reagents=new ArrayList<>();
+    private List<String> products=new ArrayList<>();
+    private Condition condition;
+    private double yield;
+    private Integer[] reagentsCoeff, productsCoeff;
+    private String equation;
+
+    public String getEquation() {
+        return equation;
+    }
+    public void setEquation(String equation) {
+        this.equation = equation;
+    }
+    public Integer[] getReagentsCoeff() {
+        return reagentsCoeff.clone();
+    }
+    public Integer[] getProductsCoeff() {
+        return productsCoeff.clone();
+    }
+    public void setReagentsCoeff(Integer[] reagentsCoeff) {
+        this.reagentsCoeff = reagentsCoeff.clone();
+    }
+    public void setProductsCoeff(Integer[] productsCoeff) {
+        this.productsCoeff = productsCoeff.clone();
+    }
+    public List<String> getProducts() {
+        return new ArrayList<>(products);
+    }
+    public void setProducts(List<String> products) {
+        this.products = new ArrayList<>(products);
+    }
+    public List<String> getReagents() {
+        List<String> r=new ArrayList<>(reagents);
+        return r;
+    }
+    public void setReagents(List<String> reagents) {
+        this.reagents = new ArrayList<>(reagents);
+    }
+    public Condition getCondition() {
+        return condition; // инкапсуляция!
+    }
+    public void setCondition(Condition condition) {
+        this.condition = condition; // инкапсуляция!
+    }
+
+    public double getYield() {
+        return yield;
+    }
+    public void setYield(double yield) {
+        this.yield = yield;
+    }
+    public String toString() {
+        return reagents.toString();
+    }
+}
