@@ -1,8 +1,9 @@
 package Interfaces;
 
+import businesslogic.TestPortion;
 import dataclasses.Reaction;
 import java.util.List;
 
 public interface IFPreparation {
-    List<IFChemicals> getReagents(Reaction r);
+    List<TestPortion> getReagents(Reaction r);
 }

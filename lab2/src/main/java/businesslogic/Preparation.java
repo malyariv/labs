@@ -6,6 +6,8 @@ import java.util.*;
 
 public class Preparation implements IFPreparation {
     private List<IFChemicals> chemicals=new ArrayList<>();
+    private List<TestPortion> chems=new ArrayList<>();
+
 
     private void getChemicals(Reaction r) {
         List<String> list=r.getReagents();
@@ -15,8 +17,11 @@ public class Preparation implements IFPreparation {
         }
     }
 
-    public List<IFChemicals> getReagents(Reaction r){
+    public List<TestPortion> getReagents(Reaction r){
         getChemicals(r);
-        return new ArrayList<>(chemicals);
+        for (IFChemicals c:chemicals) {
+            chems.add(new TestPortion(c,10));
+        }
+        return new ArrayList<>(chems);
     }
 }
