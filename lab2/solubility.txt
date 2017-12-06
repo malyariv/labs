@@ -1,0 +1,13 @@
+NaOH y
+KOH y
+Cu(OH)2 n
+NaCl y
+KCl y
+CuCl2 y
+KNO3 y
+NaNO3 y
+Cu(NO3)2 y
+Na2CO3 y
+K2CO3 y
+CuCO3 n
+
