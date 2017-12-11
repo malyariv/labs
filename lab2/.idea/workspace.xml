@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd7e7669-4c83-48a8-a411-68cb23c1bdc8" name="Default" comment="" />
+    <list default="true" id="3260cdbd-fa3b-4774-bdc9-a02824e69ba7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,44 +11,43 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/NewChemLab$Main.coverage" NAME="Main Coverage Results" MODIFIED="1512897194902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>businesslogic.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="Test@localhost" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="Test@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="ChemicalLab" type="e3449647:DbNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="NewChemLab" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Interaction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Interaction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1278">
-              <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1301#1302#0" expanded="true" />
-                <element signature="e#1328#1329#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reactor.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Reactor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2394">
-              <caret line="133" column="109" lean-forward="false" selection-start-line="133" selection-start-column="109" selection-end-line="133" selection-end-column="109" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4494#4495#0" expanded="true" />
-                <element signature="e#4532#4533#0" expanded="true" />
-                <element signature="e#4568#4569#0" expanded="true" />
-                <element signature="e#4599#4600#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -59,9 +58,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
-        <option value="Singleton" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -73,23 +71,40 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/data/Substance.java" />
-        <option value="/usr/lib/jvm/java-8-oracle/src.zip!/java/util/Comparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Ions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Data.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/DataNew.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Water.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Acid.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Alkali.java" />
-        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ChemFactory.java" />
-        <option value="$PROJECT_DIR$/solubility.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/ToDoList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/Visitor.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/ReactionLib.java" />
+        <option value="src:table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.H2O" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/AdapterDB.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f915c90c-f553-4865-b0fd-04cdb3dcaca4/console.sql" />
+        <option value="$PROJECT_DIR$/substances.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/Solid.java" />
+        <option value="$PROJECT_DIR$/reactions.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/ReagentsAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/Chemicable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/Observerable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/ChemicalObserver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/ReactionAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/Observer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/Factory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/interfaces/State.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/Marker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/QuitException.java" />
+        <option value="/usr/lib/jvm/java-8-oracle/src.zip!/java/lang/String.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/Substance.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataclasses/Tasks.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ChemicalGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactoryImpl1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactoryImpl2.java" />
         <option value="$PROJECT_DIR$/src/main/java/businesslogic/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Marker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Solution.java" />
-        <option value="$PROJECT_DIR$/src/main/java/interfaces/Chemicals.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Salt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/businesslogic/Interaction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ReactionAdapterDB.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/ReactionAdapterFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/businesslogic/Reactor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/TaskGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/businesslogic/UserInteraction.java" />
       </list>
     </option>
   </component>
@@ -98,6 +113,13 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="57" />
@@ -120,50 +142,54 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="businesslogic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="dataclasses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ChemLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChemLab" type="462c0819:PsiDirectoryNode" />
+              <item name="NewChemLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewChemLab" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -173,19 +199,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="settings.stepik" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -216,7 +237,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="ChemLab" />
+      <module name="NewChemLab" />
       <envs />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -310,50 +331,68 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dd7e7669-4c83-48a8-a411-68cb23c1bdc8" name="Default" comment="" />
-      <created>1512499368519</created>
+      <changelist id="3260cdbd-fa3b-4774-bdc9-a02824e69ba7" name="Default" comment="" />
+      <created>1512764344365</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1512499368519</updated>
-      <workItem from="1512499371139" duration="11818000" />
-      <workItem from="1512559777142" duration="8951000" />
-      <workItem from="1512585914413" duration="8520000" />
-      <workItem from="1512596827114" duration="5521000" />
+      <updated>1512764344365</updated>
+      <workItem from="1512764347060" duration="6490000" />
+      <workItem from="1512800888287" duration="4571000" />
+      <workItem from="1512821146248" duration="4888000" />
+      <workItem from="1512841386748" duration="13921000" />
+      <workItem from="1512896224781" duration="2531000" />
+      <workItem from="1512902227852" duration="8398000" />
+      <workItem from="1512915712446" duration="4551000" />
+      <workItem from="1512927280605" duration="13627000" />
+      <workItem from="1512995470537" duration="4581000" />
+      <workItem from="1513003844090" duration="929000" />
+      <workItem from="1513018736247" duration="14114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34810000" />
+    <option name="totallyTimeSpent" value="78601000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="34" width="1313" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.275969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26166007" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980237" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29486167" sideWeight="0.49095607" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964426" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27114624" sideWeight="0.50904393" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42945737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964426" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,288 +403,679 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="48" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="c.getFormula()" language="JAVA" />
+        <watch expression="((Substance)c).marker" custom="dataclasses.Substance" />
+        <watch expression="formula" language="JAVA" />
+        <watch expression="((Substance)((Solution)this).this$0).marker" custom="dataclasses.Substance.Solution,dataclasses.Substance" />
+        <watch expression="list" />
+        <watch expression="products" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Observerable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Interaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="53" column="17" lean-forward="true" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1301#1302#0" expanded="true" />
-            <element signature="e#1328#1329#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="144">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Reactor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#4532#4533#0" expanded="true" />
-            <element signature="e#4568#4569#0" expanded="true" />
-            <element signature="e#4599#4600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/ChemicalObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/UserInteraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="74" column="22" lean-forward="false" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Reactor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactoryImpl1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="5" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/Substance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/ToDoList.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Visitor.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="309">
+          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Substance.java" />
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Comparator.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar!/com/mysql/cj/jdbc/NonRegisteringDriver.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="149" column="8" lean-forward="false" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
+        <state relative-caret-position="155">
+          <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Data.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Water.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar!/com/mysql/cj/jdbc/Driver.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="33" column="19" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#207#208#0" expanded="false" />
-            <element signature="e#242#243#0" expanded="false" />
-            <element signature="e#517#518#0" expanded="false" />
-            <element signature="e#545#546#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="161">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Alkali.java">
+    <entry file="das://src:table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.H2O">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="66" column="22" lean-forward="false" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
-          <folding>
-            <element signature="e#1665#1666#0" expanded="false" />
-            <element signature="e#1695#1696#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="108">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ChemFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="89" column="20" lean-forward="false" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/ReactionLib.java" />
+    <entry file="das://table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.NaOH">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solubility.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Ions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/DataNew.java">
+    <entry file="das://src:table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.NaCl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#319#320#0" expanded="false" />
-          </folding>
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Marker.java">
+    <entry file="das://table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.NaCl">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.KCl">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f915c90c-f553-4865-b0fd-04cdb3dcaca4/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.KOH">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.H2O">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/b6246351/f915c90c-f553-4865-b0fd-04cdb3dcaca4/ChemicalLab.HCl">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/Solid.java" />
+    <entry file="file://$PROJECT_DIR$/substances.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/businesslogic.ChemicalFactory">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>businesslogic.ChemicalFactory</OriginalElement>
+          <nodes>
+            <node x="1122.0" y="573.5">interfaces.State</node>
+            <node x="1654.1190656565652" y="279.0">interfaces.Observer</node>
+            <node x="0.0" y="1643.5">businesslogic.TaskGenerator</node>
+            <node x="1381.5" y="1951.0">businesslogic.UserInteraction</node>
+            <node x="1347.5266684704177" y="255.0">interfaces.Chemicable</node>
+            <node x="790.5" y="759.0">dataclasses.Substance</node>
+            <node x="837.0" y="1249.0">businesslogic.ChemicalFactory</node>
+            <node x="1400.1516684704177" y="12.0">interfaces.Observerable</node>
+            <node x="359.9874684343431" y="0.0">dataclasses.Marker</node>
+            <node x="1408.5" y="1475.0">businesslogic.Reactor</node>
+            <node x="1967.9815656565652" y="1667.5">dataclasses.QuitException</node>
+            <node x="1418.7440656565652" y="408.0">interfaces.ChemicalObserver</node>
+            <node x="579.0" y="432.0">interfaces.ReactionAdapter</node>
+            <node x="398.0" y="561.0">businesslogic.ReactionAdapterDB</node>
+            <node x="19.5" y="1201.0">dataclasses.Tasks</node>
+            <node x="1486.5" y="2345.0">businesslogic.Main</node>
+            <node x="760.0" y="597.5">businesslogic.ReactionAdapterFile</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="businesslogic.Reactor" target="dataclasses.Marker">
+              <point x="-174.39999999999986" y="-208.0" />
+              <point x="1452.1000000000001" y="1455.0" />
+              <point x="354.5" y="1455.0" />
+              <point x="354.5" y="205.0" />
+              <point x="396.2374684343431" y="205.0" />
+              <point x="-36.25" y="87.5" />
+            </edge>
+            <edge source="businesslogic.Reactor" target="interfaces.ChemicalObserver">
+              <point x="87.20000000000005" y="-208.0" />
+              <point x="1713.7" y="1455.0" />
+              <point x="1697.0156069624813" y="1455.0" />
+              <point x="1697.0156069624813" y="541.0" />
+              <point x="1780.9583513708508" y="541.0" />
+              <point x="131.71428571428555" y="51.5" />
+            </edge>
+            <edge source="interfaces.State" target="interfaces.ChemicalObserver">
+              <point x="115.25" y="-51.5" />
+              <point x="1467.75" y="541.0" />
+              <point x="1451.6726370851366" y="541.0" />
+              <point x="-197.57142857142858" y="51.5" />
+            </edge>
+            <edge source="dataclasses.Substance" target="interfaces.ReactionAdapter">
+              <point x="-86.4375" y="-196.0" />
+              <point x="934.5625" y="719.0" />
+              <point x="749.5" y="719.0" />
+              <point x="0.0" y="27.5" />
+            </edge>
+            <edge source="businesslogic.UserInteraction" target="dataclasses.Marker">
+              <point x="-38.85714285714289" y="-172.0" />
+              <point x="1478.642857142857" y="1911.0" />
+              <point x="343.5" y="1911.0" />
+              <point x="343.5" y="195.0" />
+              <point x="372.07080176767636" y="195.0" />
+              <point x="-60.41666666666674" y="87.5" />
+            </edge>
+            <edge source="businesslogic.ChemicalFactory" target="dataclasses.Marker">
+              <point x="-147.20000000000005" y="-64.0" />
+              <point x="873.8" y="1181.0" />
+              <point x="365.5" y="1181.0" />
+              <point x="365.5" y="215.0" />
+              <point x="420.40413510100984" y="215.0" />
+              <point x="-12.083333333333258" y="87.5" />
+            </edge>
+            <edge source="businesslogic.Reactor" target="businesslogic.ChemicalFactory">
+              <point x="-87.19999999999993" y="-208.0" />
+              <point x="1539.3000000000002" y="1445.0" />
+              <point x="1021.0" y="1445.0" />
+              <point x="0.0" y="64.0" />
+            </edge>
+            <edge source="interfaces.ChemicalObserver" target="interfaces.Observerable">
+              <point x="57.625" y="-51.5" />
+              <point x="1706.8690656565652" y="383.0" />
+              <point x="1643.6190656565652" y="383.0" />
+              <point x="1643.6190656565652" y="235.0" />
+              <point x="1654.485001803751" y="235.0" />
+              <point x="36.33333333333326" y="75.5" />
+            </edge>
+            <edge source="interfaces.ChemicalObserver" target="interfaces.Observer">
+              <point x="172.875" y="-51.5" />
+              <point x="1822.1190656565652" y="383.0" />
+              <point x="1781.1190656565652" y="383.0" />
+              <point x="0.0" y="27.5" />
+            </edge>
+            <edge source="businesslogic.UserInteraction" target="businesslogic.TaskGenerator">
+              <point x="-77.71428571428578" y="-172.0" />
+              <point x="1439.7857142857142" y="1921.0" />
+              <point x="249.75" y="1921.0" />
+              <point x="83.25" y="39.5" />
+            </edge>
+            <edge source="businesslogic.ChemicalFactory" target="interfaces.ChemicalObserver">
+              <point x="147.2" y="-64.0" />
+              <point x="1168.1999999999998" y="1181.0" />
+              <point x="1615.5" y="1181.0" />
+              <point x="1615.5" y="541.0" />
+              <point x="1649.2440656565652" y="541.0" />
+              <point x="0.0" y="51.5" />
+            </edge>
+            <edge source="interfaces.State" target="interfaces.Observerable">
+              <point x="-115.25" y="-51.5" />
+              <point x="1237.25" y="235.0" />
+              <point x="1509.1516684704177" y="235.0" />
+              <point x="-109.0" y="75.5" />
+            </edge>
+            <edge source="businesslogic.ReactionAdapterDB" target="interfaces.ReactionAdapter">
+              <point x="0.0" y="-64.0" />
+              <point x="568.5" y="541.0" />
+              <point x="635.8333333333333" y="541.0" />
+              <point x="-113.66666666666669" y="27.5" />
+            </edge>
+            <edge source="businesslogic.Main" target="dataclasses.QuitException">
+              <point x="66.00000000000006" y="-39.5" />
+              <point x="1651.5" y="2320.0" />
+              <point x="2078.981565656565" y="2320.0" />
+              <point x="37.0" y="15.5" />
+            </edge>
+            <edge source="dataclasses.Substance" target="dataclasses.Marker">
+              <point x="-201.6875" y="-196.0" />
+              <point x="819.3125" y="739.0" />
+              <point x="376.5" y="739.0" />
+              <point x="376.5" y="225.0" />
+              <point x="444.57080176767636" y="225.0" />
+              <point x="12.083333333333258" y="87.5" />
+            </edge>
+            <edge source="dataclasses.Substance" target="interfaces.ChemicalObserver">
+              <point x="201.6875" y="-196.0" />
+              <point x="1222.6875" y="739.0" />
+              <point x="1604.5" y="739.0" />
+              <point x="1604.5" y="531.0" />
+              <point x="1583.3869227994223" y="531.0" />
+              <point x="-65.85714285714289" y="51.5" />
+            </edge>
+            <edge source="businesslogic.UserInteraction" target="dataclasses.QuitException">
+              <point x="116.57142857142844" y="-172.0" />
+              <point x="1634.0714285714284" y="1931.0" />
+              <point x="2004.9815656565652" y="1931.0" />
+              <point x="-37.0" y="15.5" />
+            </edge>
+            <edge source="dataclasses.Substance" target="businesslogic.ReactionAdapterFile">
+              <point x="-28.8125" y="-196.0" />
+              <point x="992.1875" y="709.0" />
+              <point x="930.5" y="709.0" />
+              <point x="0.0" y="27.5" />
+            </edge>
+            <edge source="businesslogic.Main" target="businesslogic.UserInteraction">
+              <point x="0.0" y="-39.5" />
+              <point x="68.0" y="172.0" />
+            </edge>
+            <edge source="interfaces.ChemicalObserver" target="interfaces.Chemicable">
+              <point x="-172.875" y="-51.5" />
+              <point x="1476.3690656565652" y="383.0" />
+              <point x="1449.5266684704177" y="383.0" />
+              <point x="0.0" y="51.5" />
+            </edge>
+            <edge source="businesslogic.UserInteraction" target="businesslogic.Reactor">
+              <point x="0.0" y="-172.0" />
+              <point x="-109.0" y="208.0" />
+            </edge>
+            <edge source="businesslogic.Reactor" target="interfaces.Observerable">
+              <point x="174.39999999999998" y="-208.0" />
+              <point x="1800.9" y="1455.0" />
+              <point x="1924.9315656565652" y="1455.0" />
+              <point x="1924.9315656565652" y="235.0" />
+              <point x="1799.8183351370844" y="235.0" />
+              <point x="181.66666666666674" y="75.5" />
+            </edge>
+            <edge source="dataclasses.Substance" target="interfaces.Observerable">
+              <point x="28.8125" y="-196.0" />
+              <point x="1049.8125" y="709.0" />
+              <point x="1111.5" y="709.0" />
+              <point x="1111.5" y="225.0" />
+              <point x="1436.485001803751" y="225.0" />
+              <point x="-181.66666666666674" y="75.5" />
+            </edge>
+            <edge source="businesslogic.ChemicalFactory" target="dataclasses.Substance">
+              <point x="0.0" y="-64.0" />
+              <point x="-2.8421709430404007E-14" y="196.0" />
+            </edge>
+            <edge source="interfaces.Chemicable" target="dataclasses.Marker">
+              <point x="0.0" y="-51.5" />
+              <point x="1449.5266684704177" y="215.0" />
+              <point x="492.90413510100984" y="215.0" />
+              <point x="60.41666666666674" y="87.5" />
+            </edge>
+            <edge source="interfaces.Observer" target="interfaces.Observerable">
+              <point x="0.0" y="-27.5" />
+              <point x="1781.1190656565652" y="235.0" />
+              <point x="1727.1516684704177" y="235.0" />
+              <point x="109.0" y="75.5" />
+            </edge>
+            <edge source="dataclasses.Substance" target="interfaces.State">
+              <point x="86.4375" y="-196.0" />
+              <point x="1107.4375" y="719.0" />
+              <point x="1352.5" y="719.0" />
+              <point x="0.0" y="51.5" />
+            </edge>
+            <edge source="businesslogic.UserInteraction" target="interfaces.ChemicalObserver">
+              <point x="77.71428571428578" y="-172.0" />
+              <point x="1595.2142857142858" y="1921.0" />
+              <point x="1957.4815656565652" y="1921.0" />
+              <point x="1957.4815656565652" y="541.0" />
+              <point x="1846.8154942279937" y="541.0" />
+              <point x="197.57142857142844" y="51.5" />
+            </edge>
+            <edge source="interfaces.Observerable" target="interfaces.ChemicalObserver">
+              <point x="-36.33333333333337" y="75.5" />
+              <point x="1581.8183351370844" y="235.0" />
+              <point x="1632.6190656565652" y="235.0" />
+              <point x="1632.6190656565652" y="383.0" />
+              <point x="1591.6190656565652" y="383.0" />
+              <point x="-57.625" y="-51.5" />
+            </edge>
+            <edge source="businesslogic.TaskGenerator" target="dataclasses.Tasks">
+              <point x="0.0" y="-39.5" />
+              <point x="0.0" y="112.0" />
+            </edge>
+            <edge source="businesslogic.ReactionAdapterFile" target="interfaces.ReactionAdapter">
+              <point x="0.0" y="-27.5" />
+              <point x="930.5" y="541.0" />
+              <point x="863.1666666666667" y="541.0" />
+              <point x="113.66666666666669" y="27.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.34181669394435354" x="1058.0" y="854.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>Project Files</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="38" column="7" lean-forward="false" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/ChemicalFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/ReagentsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Factory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Observer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/QuitException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1270">
+          <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Observerable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/ChemicalObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Chemicable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="68" lean-forward="true" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/State.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-          <folding>
-            <element signature="e#183#184#0" expanded="true" />
-            <element signature="e#214#215#0" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-            <element signature="e#276#277#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Solution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="2" selection-end-line="22" selection-end-column="41" />
+          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/Chemicals.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/Marker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Acid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactoryImpl2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="71" column="22" lean-forward="false" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
-          <folding>
-            <element signature="e#1699#1700#0" expanded="false" />
-            <element signature="e#1729#1730#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Salt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="80" column="37" lean-forward="false" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Interaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1278">
-          <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+        <state relative-caret-position="36">
+          <caret line="2" column="40" lean-forward="false" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1301#1302#0" expanded="true" />
-            <element signature="e#1328#1329#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ChemicalFactoryImpl1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ChemicalGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="42" lean-forward="false" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/interfaces/ReactionAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="26" lean-forward="true" selection-start-line="2" selection-start-column="48" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/Substance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="58" column="7" lean-forward="true" selection-start-line="56" selection-start-column="4" selection-end-line="58" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ReactionAdapterFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Reactor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2394">
-          <caret line="133" column="109" lean-forward="false" selection-start-line="133" selection-start-column="109" selection-end-line="133" selection-end-column="109" />
+        <state relative-caret-position="-518">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#4532#4533#0" expanded="true" />
-            <element signature="e#4568#4569#0" expanded="true" />
-            <element signature="e#4599#4600#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataclasses/Tasks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="23" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/ReactionAdapterDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+          <folding>
+            <marker date="1513032200492" expanded="true" signature="807:827" ph="SELECT Produ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/TaskGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/businesslogic.ChemicalFactoryImpl1">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>businesslogic.ChemicalFactoryImpl1</OriginalElement>
+          <nodes>
+            <node x="" y="">interfaces.State</node>
+            <node x="" y="">interfaces.Chemicable</node>
+            <node x="" y="">dataclasses.QuitException</node>
+            <node x="" y="">dataclasses.Substance.AcidSolution</node>
+            <node x="" y="">interfaces.Factory</node>
+            <node x="" y="">dataclasses.Substance.Solution</node>
+            <node x="" y="">interfaces.ReactionAdapter</node>
+            <node x="" y="">businesslogic.ReactionAdapterDB</node>
+            <node x="" y="">businesslogic.ChemicalGenerator</node>
+            <node x="" y="">dataclasses.Tasks</node>
+            <node x="" y="">interfaces.Observer</node>
+            <node x="" y="">businesslogic.ChemicalFactoryImpl2</node>
+            <node x="" y="">dataclasses.Substance.Solid</node>
+            <node x="" y="">businesslogic.TaskGenerator</node>
+            <node x="" y="">businesslogic.ChemicalFactoryImpl1</node>
+            <node x="" y="">businesslogic.UserInteraction</node>
+            <node x="" y="">dataclasses.Substance.Water</node>
+            <node x="" y="">dataclasses.Substance</node>
+            <node x="" y="">interfaces.Observerable</node>
+            <node x="" y="">dataclasses.Marker</node>
+            <node x="" y="">businesslogic.Reactor</node>
+            <node x="" y="">interfaces.ChemicalObserver</node>
+            <node x="" y="">dataclasses.Substance.Acid</node>
+            <node x="" y="">businesslogic.Main</node>
+            <node x="" y="">businesslogic.ReactionAdapterFile</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.17490381769754365" x="2202.273265651438" y="1759.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Methods</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>Project Files</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/UserInteraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/businesslogic/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>ChemLab</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

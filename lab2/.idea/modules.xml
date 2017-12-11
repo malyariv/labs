@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ChemLab.iml" filepath="$PROJECT_DIR$/ChemLab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NewChemLab.iml" filepath="$PROJECT_DIR$/NewChemLab.iml" />
     </modules>
   </component>
 </project>

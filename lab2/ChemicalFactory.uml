@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>businesslogic.ChemicalFactory</OriginalElement>
+  <nodes>
+    <node x="413.0" y="1021.0">interfaces.State</node>
+    <node x="0.0" y="24.0">interfaces.Observer</node>
+    <node x="919.0" y="1021.0">businesslogic.TaskGenerator</node>
+    <node x="1008.0" y="0.0">businesslogic.UserInteraction</node>
+    <node x="274.0" y="0.0">interfaces.Chemicable</node>
+    <node x="21.0" y="306.0">dataclasses.Substance</node>
+    <node x="0.0" y="1021.0">businesslogic.ChemicalFactory</node>
+    <node x="527.0" y="0.0">interfaces.Observerable</node>
+    <node x="1086.0" y="743.0">dataclasses.Marker</node>
+    <node x="527.0" y="201.0">businesslogic.Reactor</node>
+    <node x="243.0" y="1194.0">dataclasses.QuitException</node>
+    <node x="21.0" y="153.0">interfaces.ChemicalObserver</node>
+    <node x="180.5" y="743.0">interfaces.ReactionAdapter</node>
+    <node x="361.0" y="848.0">businesslogic.ReactionAdapterDB</node>
+    <node x="747.0" y="743.0">dataclasses.Tasks</node>
+    <node x="0.0" y="1194.0">businesslogic.Main</node>
+    <node x="0.0" y="884.5">businesslogic.ReactionAdapterFile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="dataclasses.Substance" target="interfaces.ChemicalObserver">
+      <point x="0.0" y="-196.0" />
+      <point x="0.0" y="51.5" />
+    </edge>
+    <edge source="interfaces.ChemicalObserver" target="interfaces.Observer">
+      <point x="-115.25" y="-51.5" />
+      <point x="136.25" y="128.0" />
+      <point x="127.0" y="128.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="interfaces.ChemicalObserver" target="interfaces.Chemicable">
+      <point x="115.25" y="-51.5" />
+      <point x="366.75" y="128.0" />
+      <point x="376.0" y="128.0" />
+      <point x="0.0" y="51.5" />
+    </edge>
+    <edge source="businesslogic.Reactor" target="interfaces.Observerable">
+      <point x="0.0" y="-208.0" />
+      <point x="0.0" y="75.5" />
+    </edge>
+    <edge source="businesslogic.ReactionAdapterDB" target="interfaces.ReactionAdapter">
+      <point x="0.0" y="-64.0" />
+      <point x="531.5" y="823.0" />
+      <point x="436.25" y="823.0" />
+      <point x="85.25" y="27.5" />
+    </edge>
+    <edge source="businesslogic.ReactionAdapterFile" target="interfaces.ReactionAdapter">
+      <point x="0.0" y="-27.5" />
+      <point x="170.5" y="823.0" />
+      <point x="265.75" y="823.0" />
+      <point x="-85.25" y="27.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="333.5" y="291.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
