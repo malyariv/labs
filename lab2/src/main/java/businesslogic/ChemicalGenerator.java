@@ -1,25 +1,25 @@
 package businesslogic;
 /**
- * The class {@code ChemicalGenerator} implements the factory method pattern.
- * It generates {@code ChemicalFactoryImpl1} or {@code ChemicalFactoryImpl2}
+ * The class {@code ChemicalGenerator} implements the IFactory method pattern.
+ * It generates {@code SolidsFactory} or {@code SolutionFactory}
  * depending on number of arguments.
  */
 import interfaces.*;
 
 public class ChemicalGenerator {
-    /** a factory to be generated*/
-    private Factory factory=null;
+    /** a IFactory to be generated*/
+    private IFactory IFactory =null;
 
     /**
-     * Returns the {@code ChemicalObserver} object depending on arguments.
+     * Returns the {@code IChemicalIObserver} object depending on arguments.
      */
-    public ChemicalObserver getChemical(Object... args){
+    public IChemicalIObserver getChemical(Object... args){
         if (args.length==1) {
-            factory=new ChemicalFactoryImpl1();
+            IFactory =new SolidsFactory();
         }
         else {
-            factory=new ChemicalFactoryImpl2();
+            IFactory =new SolutionFactory();
         }
-        return factory.getChemical(args);
+        return IFactory.getChemical(args);
     };
 }

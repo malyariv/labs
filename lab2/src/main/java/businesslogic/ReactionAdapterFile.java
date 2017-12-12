@@ -1,9 +1,9 @@
 package businesslogic;
 /**
- * The class {@code ReactionAdapterDB}, implementing interface {@code ReactionAdapter},
+ * The class {@code ReactionAdapterFile}, implementing interface {@code IReactionAdapter},
  * provides receiving information about chemical reaction from text file
  */
-import interfaces.ReactionAdapter;
+import interfaces.IReactionAdapter;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReactionAdapterFile implements ReactionAdapter{
+public class ReactionAdapterFile implements IReactionAdapter {
     /**
-     * Implementation of method of interface {@code ReactionAdapter}.
+     * Implementation of method of interface {@code IReactionAdapter}.
      */
     @Override
     public List<String> getProducts(String s1, String s2) {
@@ -33,7 +33,9 @@ public class ReactionAdapterFile implements ReactionAdapter{
                     }
                 }
             }
-        }catch (IOException e){e.printStackTrace();}
+        }catch (IOException e){
+            System.out.println("Problem with file reading");
+        }
         if (products ==null) return null;
         products=products.substring(s2.length()+1,products.length());
         return Arrays.asList(products.split("\\+"));

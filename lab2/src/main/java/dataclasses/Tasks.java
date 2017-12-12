@@ -1,6 +1,6 @@
 package dataclasses;
 /**
- * The enumeration {@code Marker} is a set of tasks.
+ * The enumeration {@code Tasks} is a set of tasks.
  */
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,15 +1,15 @@
 package businesslogic;
 /**
- * The class {@code ReactionAdapterDB}, implementing interface {@code ReactionAdapter},
- * provides receiving information about chemical reaction from MySQL datbase
+ * The class {@code ReactionAdapterDB}, implementing interface {@code IReactionAdapter},
+ * provides receiving information about chemical reaction from MySQL database
  */
-import interfaces.ReactionAdapter;
+import interfaces.IReactionAdapter;
 
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class ReactionAdapterDB implements ReactionAdapter {
+public class ReactionAdapterDB implements IReactionAdapter {
     /** an address if a database*/
     private final String URL = "jdbc:mysql://localhost:3306/ChemicalLab";
     /** a username in database*/
@@ -18,7 +18,7 @@ public class ReactionAdapterDB implements ReactionAdapter {
     private final String PASSWORD = "root";
 
     /**
-     * Implementation of method of interface {@code ReactionAdapter}.
+     * Implementation of method of interface {@code IReactionAdapter}.
      */
     @Override
     public List<String> getProducts(String s1, String s2) {
@@ -37,7 +37,9 @@ public class ReactionAdapterDB implements ReactionAdapter {
                 product=set.getString("Products");
             }
 
-        } catch (SQLException e){e.printStackTrace();}
+        } catch (SQLException e){
+            System.out.println("Problem with database connection");
+        }
 
         if (product==null) return null;
         return Arrays.asList(product.split("\\+"));

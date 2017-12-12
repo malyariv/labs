@@ -1,8 +1,8 @@
 package businesslogic;
 
 /**
- * The class {@code Reactor}, implementing interface {@code Observerable},
- * is a container for objects implementing interface {@code ChemicalObserver}.
+ * The class {@code Reactor}, implementing interface {@code IObserverable},
+ * is a container for objects implementing interface {@code IChemicalIObserver}.
  * This class is a model of chemical reactor where chemical interaction
  * between chemical reagents occurs.
  */
@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class Reactor<T extends ChemicalObserver> implements Observerable{
+public class Reactor<T extends IChemicalIObserver> implements IObserverable {
     /** the current list of chemical reagents in the reactor*/
-    private List<ChemicalObserver> reagents=new ArrayList<>();
+    private List<IChemicalIObserver> reagents=new ArrayList<>();
     /** the current list of chemical reagents to be removed from the reactor*/
-    private Set<ChemicalObserver> removeList =new HashSet<>();
+    private Set<IChemicalIObserver> removeList =new HashSet<>();
     /** the current list of chemical reagents to be synthesized in the reactor*/
-    private Set<ChemicalObserver> productsList =new HashSet<>();
+    private Set<IChemicalIObserver> productsList =new HashSet<>();
     /** a factory which generates chemical reagents*/
     private ChemicalGenerator chemicalGenerator=new ChemicalGenerator();
 
@@ -37,7 +37,7 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
      * Generates a chemical and puts it into the current list of reagents.
      */
     public void add(String s){
-        ChemicalObserver c= chemicalGenerator.getChemical(s);
+        IChemicalIObserver c= chemicalGenerator.getChemical(s);
         if (reagents.contains(c)) return;
         addObserver(c);
         System.out.println(s+" was put into reactor");
@@ -73,7 +73,7 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
      * to be removed from the reactor
      */
     private void remove() {
-        for (ChemicalObserver c:removeList){
+        for (IChemicalIObserver c:removeList){
             removeObserver(c);
         }
         removeList.clear();
@@ -83,7 +83,7 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
      * to be synthesized in the reactor
      */
     private void reagentsRefresh(){
-        for (ChemicalObserver c:productsList){
+        for (IChemicalIObserver c:productsList){
             addObserver(c);
             switch (c.getMarker()){
                 case SOLUTION:
@@ -100,7 +100,7 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
     /**
      * Returns all chemicals from the current list of reagents
      */
-    public List<ChemicalObserver> getReagents() {
+    public List<IChemicalIObserver> getReagents() {
         return new ArrayList<>(reagents);
     }
     /**
@@ -108,33 +108,33 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
      */
     public void showReagents() {
         System.out.println("\tTotal: "+reagents.size()+" reagents in reactor");
-        for (ChemicalObserver c:reagents){
+        for (IChemicalIObserver c:reagents){
             System.out.print("\t"+c.getFormula()+"("+c.getMarker()+")");
         }
         System.out.println();
     }
     /**
-     * Implementation of method of interface {@code Observerable}.
+     * Implementation of method of interface {@code IObserverable}.
      */
     @Override
-    public void addObserver(ChemicalObserver o) {
+    public void addObserver(IChemicalIObserver o) {
         reagents.add(o);
     }
     /**
-     * Implementation of method of interface {@code Observerable}.
+     * Implementation of method of interface {@code IObserverable}.
      */
     @Override
-    public void removeObserver(ChemicalObserver o) {
+    public void removeObserver(IChemicalIObserver o) {
         reagents.remove(o);
     }
     /**
-     * Implementation of method of interface {@code Observerable}.
+     * Implementation of method of interface {@code IObserverable}.
      */
     @Override
-    public void notifyObservers(Consumer<ChemicalObserver> cons) {
+    public void notifyObservers(Consumer<IChemicalIObserver> cons) {
         int changes=0;
         do{
-            for (ChemicalObserver c:reagents){
+            for (IChemicalIObserver c:reagents){
                 cons.accept(c);
             }
             changes=removeList.size()+productsList.size();
@@ -147,12 +147,12 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
         }while (changes>0);
     }
     /**
-     * Implementation of method of interface {@code Observerable}.
+     * Implementation of method of interface {@code IObserverable}.
      */
     @Override
     public void addChemical(String chem) {
         ChemicalGenerator generator=new ChemicalGenerator();
-        ChemicalObserver c=null;
+        IChemicalIObserver c=null;
         if (chem.endsWith("sol")){
             c= generator.getChemical(chem.substring(0,chem.length()-3), Marker.SOLUTION);
         }
@@ -162,10 +162,10 @@ public class Reactor<T extends ChemicalObserver> implements Observerable{
         productsList.add(c);
     }
     /**
-     * Implementation of method of interface {@code Observerable}.
+     * Implementation of method of interface {@code IObserverable}.
      */
     @Override
-    public void removeChemical(ChemicalObserver chem) {
+    public void removeChemical(IChemicalIObserver chem) {
         removeList.add(chem);
     }
 }

@@ -5,7 +5,7 @@ package businesslogic;
  */
 import dataclasses.Marker;
 import dataclasses.QuitException;
-import interfaces.ChemicalObserver;
+import interfaces.IChemicalIObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class UserInteraction {
      */
     public boolean quit() {
         if (reactor.getReagents().size()==1){
-            ChemicalObserver chem=(ChemicalObserver)reactor.getReagents().get(0);
+            IChemicalIObserver chem=(IChemicalIObserver)reactor.getReagents().get(0);
             if (chem.getFormula().equals(currentTask)&&chem.getMarker()!= Marker.SOLUTION){
                 System.out.println("You did it!");
                 return true;
@@ -74,9 +74,16 @@ public class UserInteraction {
         System.out.println();
         Scanner scanner=new Scanner(System.in);
         while (true) {
-            int index = scanner.nextInt();
+            int index=0;
+            String string=scanner.nextLine();
+            try{
+                index = Integer.valueOf(string);
+            }catch (NumberFormatException e){
+                System.out.println("Wrong input. Try again!");
+                continue;
+            }
             if (index < 1 || index > elements.size()) {
-                System.out.println("Try again");
+                System.out.println("Wrong input. Try again!");
             }
             else {
                 reactor.add(elements.get(index-1));
@@ -103,25 +110,47 @@ public class UserInteraction {
         System.out.println();
         Scanner scanner=new Scanner(System.in);
         while (true) {
-            int index = scanner.nextInt();
-            switch (index){
-                case 1: chooseReagents(); break;
-                case 2: reactor.showReagents(); break;
-                case 3: reactor.clear(); break;
-                case 4:
-                    System.out.println("Mixing");
-                    reactor.mix(); break;
-                case 5:
-                    System.out.println("Heating");
-                    reactor.heat();
-                    break;
-                case 6: quit=true; break;
-                case 7: throw new QuitException();
-                default:
-                    System.out.println("Try again!");
-                    continue;
+            int index = 0;
+            String string=scanner.nextLine();
+            try{
+                index = Integer.valueOf(string);
+            }catch (NumberFormatException e){
+                System.out.println("Wrong input. Try again!");
+                continue;
             }
-            break;
+            if (index < 1 || index > menu.size()) {
+                System.out.println("Wrong input. Try again!");
+            }
+            else {
+                switch (index) {
+                    case 1:
+                        chooseReagents();
+                        break;
+                    case 2:
+                        reactor.showReagents();
+                        break;
+                    case 3:
+                        reactor.clear();
+                        break;
+                    case 4:
+                        System.out.println("Mixing");
+                        reactor.mix();
+                        break;
+                    case 5:
+                        System.out.println("Heating");
+                        reactor.heat();
+                        break;
+                    case 6:
+                        quit = true;
+                        break;
+                    case 7:
+                        throw new QuitException();
+                    default:
+                        System.out.println("Try again!");
+                        continue;
+                }
+                break;
+            }
         }
     }
     /**
