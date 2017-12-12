@@ -118,39 +118,36 @@ public class UserInteraction {
                 System.out.println("Wrong input. Try again!");
                 continue;
             }
-            if (index < 1 || index > menu.size()) {
-                System.out.println("Wrong input. Try again!");
+            switch (index) {
+                case 1:
+                    chooseReagents();
+                    break;
+                case 2:
+                    reactor.showReagents();
+                    break;
+                case 3:
+                    reactor.clear();
+                    break;
+                case 4:
+                    System.out.println("Mixing");
+                    reactor.mix();
+                    break;
+                case 5:
+                    System.out.println("Heating");
+                    reactor.heat();
+                    break;
+                case 6:
+                    quit = true;
+                    break;
+                case 7:
+                    throw new QuitException();
+                default:
+                    System.out.println("Wrong input. Try again!");
+                    continue;
             }
-            else {
-                switch (index) {
-                    case 1:
-                        chooseReagents();
-                        break;
-                    case 2:
-                        reactor.showReagents();
-                        break;
-                    case 3:
-                        reactor.clear();
-                        break;
-                    case 4:
-                        System.out.println("Mixing");
-                        reactor.mix();
-                        break;
-                    case 5:
-                        System.out.println("Heating");
-                        reactor.heat();
-                        break;
-                    case 6:
-                        quit = true;
-                        break;
-                    case 7:
-                        throw new QuitException();
-                    default:
-                        System.out.println("Try again!");
-                        continue;
-                }
-                break;
-            }
+            break;
+
+
         }
     }
     /**

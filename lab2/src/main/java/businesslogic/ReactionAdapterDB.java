@@ -38,7 +38,7 @@ public class ReactionAdapterDB implements IReactionAdapter {
             }
 
         } catch (SQLException e){
-            System.out.println("Problem with database connection");
+            System.out.println("Problem with connection to library of chemical reactions");
         }
 
         if (product==null) return null;

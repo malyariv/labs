@@ -1,11 +1,19 @@
 package interfaces;
 /**
- * The interface {@code AState} is a GoF patterns. Here, it allows different
+ * The abstract class {@code AState} is a GoF patterns. Here, it allows different
  * behaviour of chemicals upon different exposures.
  */
 import java.util.List;
 
 public abstract class AState {
+
+    /** a state name*/
+    private String name;
+
+    protected AState(String name) {
+        this.name = name;
+    }
+
     /**
      * Generates a response to heating.
      */
@@ -20,4 +28,9 @@ public abstract class AState {
      * Provides dissolution of reagents.
      */
     public void dissolve(IObserverable obs, List<IChemicalIObserver> reagents){};
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -38,11 +38,11 @@ public class Substance implements IChemicalIObserver {
     /** sets the currentAState value depending on marker value */
     private void setState(Marker marker){
         switch (marker){
-            case WATER: currentAState =new Water(); break;
-            case ACID: currentAState =new Acid(); break;
-            case ACIDSOLUTION: currentAState =new AcidSolution(); break;
-            case SOLUTION: currentAState =new Solution(); break;
-            default: currentAState =new Solid();
+            case WATER: currentAState =new Water("Solvent"); break;
+            case ACID: currentAState =new Acid("Acid"); break;
+            case ACIDSOLUTION: currentAState =new AcidSolution("Solution"); break;
+            case SOLUTION: currentAState =new Solution("Solution"); break;
+            default: currentAState =new Solid("Solid");
         }
     }
     /**
@@ -95,12 +95,17 @@ public class Substance implements IChemicalIObserver {
      */
     public void react(IObserverable obs, List<IChemicalIObserver> reagents){
         List<String> products=null;
-        for (int i = 0; i < reagents.size(); i++) {
-            IChemicalIObserver c = reagents.get(i);
-            if (formula.equals(c.getFormula())) continue;
-            if (!currentAState.check(c)) continue;
+        for (IChemicalIObserver c:reagents) {
+            if (formula.equals(c.getFormula())) {
+                continue;
+            }
+            if (!currentAState.check(c)) {
+                continue;
+            }
             products = IReactionAdapter.getProducts(formula, c.getFormula());
-            if (products == null) continue;
+            if (products == null) {
+                continue;
+            }
             for (String s : products) {
                 obs.addChemical(s);
             }
@@ -139,22 +144,21 @@ public class Substance implements IChemicalIObserver {
      * response of the reagent upon different exposures.
      */
     private class Solid extends AState {
+        private Solid(String name) {
+            super(name);
+        }
+
         /**
          * Overrides the method of superclass {@code AState}.
          */
         @Override
         public boolean check(IChemicalIObserver c) {
-            if (c.getState().equals("Solid")) return false;
+            if (c.getState().equals("Solid")) {
+                return false;
+            }
             return true;
         }
-
-
-        @Override
-            public String toString() {
-            return "Solid";
-        }
-        }
-
+    }
 
     /**
      * The inner class {@code Water}, extending abstract class {@code AState},
@@ -162,6 +166,10 @@ public class Substance implements IChemicalIObserver {
      * response of the reagent upon different exposures.
      */
     private class Water extends AState {
+        private Water(String name) {
+            super(name);
+        }
+
         /**
          * Overrides the method of superclass {@code AState}.
          */
@@ -175,15 +183,18 @@ public class Substance implements IChemicalIObserver {
          */
         @Override
         public void dissolve(IObserverable obs, List<IChemicalIObserver> reagents) {
-            for (int i=0;i<reagents.size();i++){
-                IChemicalIObserver c=reagents.get(i);
-                if (formula.equals(c.getFormula())) continue;
+            for (IChemicalIObserver c:reagents){
+                if (formula.equals(c.getFormula())) {
+                    continue;
+                }
                 if (c.getState().equals("Solution")) {
                     obs.removeChemical(Substance.this);
                     continue;
                 }
                 List<String>products = IReactionAdapter.getProducts(formula, c.getFormula());
-                if (products == null) continue;
+                if (products == null) {
+                    continue;
+                }
                 for (String s : products) {
                     obs.addChemical(s);
                 }
@@ -192,10 +203,6 @@ public class Substance implements IChemicalIObserver {
             }
         }
 
-        @Override
-        public String toString() {
-            return "Solvent";
-        }
     }
 
 
@@ -205,6 +212,11 @@ public class Substance implements IChemicalIObserver {
      * It contains methods simulating response of the reagent upon different exposures.
      */
     private class Solution extends AState {
+
+        private Solution(String name) {
+            super(name);
+        }
+
         /**
          * Overrides the method of superclass {@code AState}.
          */
@@ -220,30 +232,36 @@ public class Substance implements IChemicalIObserver {
          */
         @Override
         public void dissolve(IObserverable obs, List<IChemicalIObserver> reagents) {
-            for (int i=0;i<reagents.size();i++){
-                IChemicalIObserver c=reagents.get(i);
-                if (formula.equals(c.getFormula())) continue;
-                if (c.getState().equals("Solvent")||(c.getState().equals("Solution"))) continue;
+            for (IChemicalIObserver c:reagents){
+                if (formula.equals(c.getFormula())) {
+                    continue;
+                }
+                if (c.getState().equals("Solvent")||(c.getState().equals("Solution"))) {
+                    continue;
+                }
                 List<String>products = IReactionAdapter.getProducts("H2O", c.getFormula());
-                if (products == null) continue;
+                if (products == null) {
+                    continue;
+                }
                 for (String s : products) {
                     obs.addChemical(s);
                 }
                 obs.removeChemical(c);
             }
         }
-
-        @Override
-        public String toString() {
-            return "Solution";
-        }
     }
+
     /**
      * The inner class {@code AcidSolution}, extending abstract class {@code AState},
      * is a model of a diluted acid. It contains methods
      * simulating response of the reagent upon different exposures.
      */
     private class AcidSolution extends AState {
+
+        private AcidSolution(String name) {
+            super(name);
+        }
+
         /**
          * Overrides the method of superclass {@code AState}.
          */
@@ -256,23 +274,18 @@ public class Substance implements IChemicalIObserver {
          */
         @Override
         public void dissolve(IObserverable obs, List<IChemicalIObserver> reagents) {
-            new Solution().dissolve(obs,reagents);
-        }
-
-        @Override
-        public String toString() {
-            return "Solution";
+            new Solution("Solution").dissolve(obs,reagents);
         }
     }
+
     /**
      * The inner class {@code Acid}, extending abstract class {@code AState},
      * is a model of an acid. It contains methods simulating response of the reagent
      * upon different exposures.
      */
     private class Acid extends AState {
-        @Override
-        public String toString() {
-            return "Acid";
+        private Acid(String name) {
+            super(name);
         }
     }
 }

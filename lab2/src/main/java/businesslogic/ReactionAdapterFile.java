@@ -34,7 +34,7 @@ public class ReactionAdapterFile implements IReactionAdapter {
                 }
             }
         }catch (IOException e){
-            System.out.println("Problem with file reading");
+            System.out.println("Problem with connection to library of chemical reactions");
         }
         if (products ==null) return null;
         products=products.substring(s2.length()+1,products.length());

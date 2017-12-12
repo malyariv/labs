@@ -19,7 +19,9 @@ public class SolutionFactory implements IFactory {
         Marker marker=(Marker) args[1];
         SolidsFactory factory=new SolidsFactory();
         Substance substance=(Substance) factory.getChemical(s);
-        if (substance.getMarker()==Marker.ACID&&marker==Marker.SOLUTION) marker=Marker.ACIDSOLUTION;
+        if (substance.getMarker()==Marker.ACID&&marker==Marker.SOLUTION) {
+            marker=Marker.ACIDSOLUTION;
+        }
         substance.setMarker(marker);
         cacheSolutions.put(s,substance);
         return cacheSolutions.get(s);
