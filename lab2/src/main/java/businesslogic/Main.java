@@ -3,6 +3,7 @@ package businesslogic;
  * The class {@code Main} is a console application simulating chemical laboratory
  * where user can some operations with chemical reagents.
  */
+import dataclasses.ConnectionProblemException;
 import dataclasses.QuitException;
 
 public class Main {
@@ -29,6 +30,6 @@ public class Main {
             }
         }catch (QuitException e){
             System.out.println("Bye!");
-        }
+        }catch (ConnectionProblemException e){}
     }
 }

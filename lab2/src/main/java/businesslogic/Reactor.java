@@ -7,7 +7,9 @@ package businesslogic;
  * between chemical reagents occurs.
  */
 
+import dataclasses.ConnectionProblemException;
 import dataclasses.Marker;
+import dataclasses.QuitException;
 import interfaces.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,8 +38,9 @@ public class Reactor<T extends IChemicalIObserver> implements IObserverable {
     /**
      * Generates a chemical and puts it into the current list of reagents.
      */
-    public void add(String s){
+    public void add(String s) throws ConnectionProblemException {
         IChemicalIObserver c= chemicalGenerator.getChemical(s);
+        if (c==null) throw new ConnectionProblemException();
         if (reagents.contains(c)) return;
         addObserver(c);
         System.out.println(s+" was put into reactor");

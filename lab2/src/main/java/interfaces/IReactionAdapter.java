@@ -3,6 +3,8 @@ package interfaces;
  * The interface {@code IReactionAdapter} allows receiving information
  * about chemical reaction
  */
+import dataclasses.ConnectionProblemException;
+
 import java.util.List;
 
 public interface IReactionAdapter {

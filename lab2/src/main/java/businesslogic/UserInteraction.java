@@ -3,6 +3,7 @@ package businesslogic;
  * The class {@code UserInteraction} provides interaction between user
  * and application using console interface.
  */
+import dataclasses.ConnectionProblemException;
 import dataclasses.Marker;
 import dataclasses.QuitException;
 import interfaces.IChemicalIObserver;
@@ -66,7 +67,7 @@ public class UserInteraction {
     /**
      * Prints the available chemicals and reads the chosen one.
      */
-    private void chooseReagents(){
+    private void chooseReagents() throws ConnectionProblemException {
         System.out.println("Choose one of the following reagents:");
         for (int i=0;i<elements.size();i++){
             System.out.print("\t\t"+(i+1)+") "+elements.get(i));
@@ -86,7 +87,12 @@ public class UserInteraction {
                 System.out.println("Wrong input. Try again!");
             }
             else {
-                reactor.add(elements.get(index-1));
+                try{
+                    reactor.add(elements.get(index-1));
+                }catch (ConnectionProblemException e){
+                    System.out.println("Sorry");
+                    throw new ConnectionProblemException();
+                }
                 break;
             }
         }
@@ -95,14 +101,14 @@ public class UserInteraction {
      * Decides to print the menu or the list of available reagents.
      * It also throws {@code QuitException } to quit the program.
      */
-    public void action() throws QuitException {
+    public void action() throws QuitException, ConnectionProblemException {
         if (reactor.isEmpty()) chooseReagents();
         else chooseMenu();
     }
     /**
      * Prints the menu and reads the chosen action.
      */
-    private void chooseMenu() throws QuitException {
+    private void chooseMenu() throws QuitException, ConnectionProblemException {
         System.out.println("Choose one of the following operations:");
         for (int i=0;i<menu.size();i++){
             System.out.print("\t\t"+(i+1)+") "+menu.get(i));
@@ -146,8 +152,6 @@ public class UserInteraction {
                     continue;
             }
             break;
-
-
         }
     }
     /**
