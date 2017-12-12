@@ -108,7 +108,7 @@ public class Substance implements ChemicalObserver {
             obs.removeChemical(c);
         }
     }
-    /**
+   /**
      * Implementation of method of interface {@code Observer}.
      */
     @Override

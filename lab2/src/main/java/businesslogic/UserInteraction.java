@@ -12,12 +12,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserInteraction {
-
+    /** flag to quit the current task*/
     private boolean quit=false;
+    /** a {@code TaskGenerator} object to generate tasks*/
     private TaskGenerator taskGenerator=new TaskGenerator();
+    /** a formula of a chemical to be synthesized*/
     private String currentTask;
+    /** a list of available chemicals*/
     private List<String> elements;
+    /** a {@code Reactor} object where chemical interactions occurs*/
     private Reactor reactor=new Reactor();
+    /** a menu for interactions with user */
     private List<String> menu=new ArrayList<>();
     {
         menu.add("add component");
@@ -29,12 +34,16 @@ public class UserInteraction {
         menu.add("quit");
     }
 
-
+    /**
+     * Prints welcome words.
+     */
     public void hail() {
         System.out.println("Welcome to chemical lab. Here, you can carry out some reactions to synthesis new compounds.");
         System.out.println("==========================================================================================");
     }
-
+    /**
+     * Checks if the current task is completed.
+     */
     public boolean quit() {
         if (reactor.getReagents().size()==1){
             ChemicalObserver chem=(ChemicalObserver)reactor.getReagents().get(0);
@@ -45,13 +54,18 @@ public class UserInteraction {
         }
         return quit;
     }
-
+    /**
+     * Prints the generated task.
+     */
     public void taskGeneration() {
         currentTask=taskGenerator.generateCompound();
         System.out.println("Your current task is synthesis of "+currentTask+".");
         elements=taskGenerator.generateElements(currentTask);
 
     }
+    /**
+     * Prints the available chemicals and reads the chosen one.
+     */
     private void chooseReagents(){
         System.out.println("Choose one of the following reagents:");
         for (int i=0;i<elements.size();i++){
@@ -70,12 +84,17 @@ public class UserInteraction {
             }
         }
     }
+    /**
+     * Decides to print the menu or the list of available reagents.
+     * It also throws {@code QuitException } to quit the program.
+     */
     public void action() throws QuitException {
-
         if (reactor.isEmpty()) chooseReagents();
         else chooseMenu();
     }
-
+    /**
+     * Prints the menu and reads the chosen action.
+     */
     private void chooseMenu() throws QuitException {
         System.out.println("Choose one of the following operations:");
         for (int i=0;i<menu.size();i++){
@@ -105,7 +124,9 @@ public class UserInteraction {
             break;
         }
     }
-
+    /**
+     * Removes all reagents from reactor and resets the flag.
+     */
     public void cleaning(){
         quit=false;
         reactor.clear();
