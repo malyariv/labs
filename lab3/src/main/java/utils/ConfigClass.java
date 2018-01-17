@@ -1,22 +1,23 @@
 package utils;
 
-import dbSet.SetHashContainer;
+import abstracts.HashContainer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigClass<T> implements Serializable{
-    private List<SetHashContainer> hash;
+    private List<HashContainer> hash;
     private int size;
     private int writtenFiles;
+    private int blocksize;
     private T[] cache;
 
-    public List<SetHashContainer> getHash() {
+    public List<HashContainer> getHash() {
         return new ArrayList<>(hash);
     }
 
-    public void setHash(List<SetHashContainer> hash) {
+    public void setHash(List<HashContainer> hash) {
         this.hash = new ArrayList<>(hash);
     }
 
@@ -42,5 +43,13 @@ public class ConfigClass<T> implements Serializable{
 
     public void setCache(T[] cache) {
         this.cache = cache;
+    }
+
+    public int getBlocksize() {
+        return blocksize;
+    }
+
+    public void setBlocksize(int blocksize) {
+        this.blocksize = blocksize;
     }
 }

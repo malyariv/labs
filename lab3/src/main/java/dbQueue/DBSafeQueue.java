@@ -1,33 +1,27 @@
-package dbSet;
+package dbQueue;
 
-import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
-import utils.*;
+import dbSet.SetDataNode;
+import utils.States;
+
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.NoSuchElementException;
+import java.util.Queue;
 
-public class DBSet<T> implements Set<T> {
-
+public class DBSafeQueue<T> implements Queue<T> {
     private T t=null;
     private SetDataNode<T> setDataNode;
 
-    public DBSet(String folder, boolean open) {
+    public DBSafeQueue(String folder, boolean open) {
         setDataNode =new SetDataNode<>(folder);
-        setDataNode.setState(States.SET);
+        setDataNode.setState(States.LIST);
         if (open){
-            setDataNode.readConfiguration("dbSet");
+            setDataNode.readConfiguration("dbQueue");
         }
         else {
             setDataNode.clearDirectory();
         }
     }
-
-    public DBSet(String folder, Set<T> set){
-        setDataNode =new SetDataNode<>(folder);
-        setDataNode.clearDirectory();
-        copySet(set);
-    }
-
 
     @Override
     public int size() {
@@ -36,7 +30,7 @@ public class DBSet<T> implements Set<T> {
 
     @Override
     public boolean isEmpty() {
-        return setDataNode.size()==0;
+        return size()==0;
     }
 
     @Override
@@ -57,8 +51,7 @@ public class DBSet<T> implements Set<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-
-        return a;
+        return null;
     }
 
     @Override
@@ -90,24 +83,13 @@ public class DBSet<T> implements Set<T> {
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
-        boolean flag=false;
-        for (T t:this){
-            if (!c.contains(t)) {
-                remove(t);
-                flag = true;
-            }
-        }
-        return flag;
+    public boolean removeAll(Collection<?> c) {
+        return false;
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
-        boolean flag=false;
-        for (Object ob:c){
-            if (remove(ob)) flag=true;
-        }
-        return flag;
+    public boolean retainAll(Collection<?> c) {
+        return false;
     }
 
     @Override
@@ -115,21 +97,48 @@ public class DBSet<T> implements Set<T> {
         setDataNode.clear();
     }
 
-    public void save(){
-        setDataNode.save("dbSet");
+    @Override
+    public boolean offer(T t) {
+        return add(t);
     }
 
-    private void copySet(Set<T> set){
-        setDataNode.setState(States.LIST);
-        for (T t1:set) {
-            setDataNode.add(t1);
+    @Override
+    public T remove() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
         }
-        setDataNode.setCurrentState(States.SET);
+        t=setDataNode.get(0);
+        setDataNode.remove(0);
+        return t;
     }
 
-    public int getMaxSize(){
-        long freeMemory = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory();
-        if (t==null) throw new IllegalArgumentException("Set is empty");
-        return (int) (freeMemory / ObjectSizeCalculator.getObjectSize(t));
+    @Override
+    public T poll() {
+        if (isEmpty()) {
+            return null;
+        }
+        t=setDataNode.get(0);
+        setDataNode.remove(0);
+        return t;
+    }
+
+    @Override
+    public T element() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return setDataNode.get(0);
+    }
+
+    @Override
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+        return setDataNode.get(0);
+    }
+
+    public void save(){
+        setDataNode.save("dbQueue");
     }
 }

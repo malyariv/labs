@@ -30,8 +30,8 @@ public class ListDataNode<T> extends DataNode<T> {
     }
 
     @Override
-    public void readConfiguration() {
-        ConfigClass conf=utils.readConfiguration();
+    public void readConfiguration(String filename) {
+        ConfigClass conf=utils.readConfiguration(filename);
         hash=new ArrayList<>(conf.getHash());
         size=conf.getSize();
         writtenFilesIndex=conf.getWrittenFiles();
@@ -103,8 +103,7 @@ public class ListDataNode<T> extends DataNode<T> {
     public void remove(int index) {
         justRemove(index);
         if (size==0){
-            hash.add(new ListHashContainer(writeSize));
-            writtenFilesIndex=0;
+            emptyCondition();
         }
         for (int i=0;i<=writtenFilesIndex;i++){
             hash.get(i).decrement(index);
@@ -119,11 +118,17 @@ public class ListDataNode<T> extends DataNode<T> {
             else {
                 size--;
                 if (simplyRemove(j, i, hash, writtenFilesIndex, utils)) {
-                    writtenFilesIndex--;
+                    if (writtenFilesIndex>0) {
+                        writtenFilesIndex--;
+                    }
                 }
                 break;
             }
         }
+    }
+    public void emptyCondition(){
+        hash.add(new ListHashContainer(writeSize));
+        writtenFilesIndex=0;
     }
 
     public T set(int index, T element){
@@ -148,6 +153,8 @@ public class ListDataNode<T> extends DataNode<T> {
         writtenFilesIndex=0;
     }
 
+
+
     @Override
     public HashContainer copyDataFrom(HashContainer h1, HashContainer h2) {
         ListHashContainer h=new ListHashContainer(writeSize);
@@ -171,8 +178,18 @@ public class ListDataNode<T> extends DataNode<T> {
     }
 
     @Override
-    public void save() {
+    public ConfigClass saveConfig() {
+        ConfigClass conf=new ConfigClass();
+        conf.setHash(hash);
+        conf.setSize(size);
+        conf.setWrittenFiles(writtenFilesIndex);
+        return conf;
+    }
 
+    @Override
+    public void save(String filename) {
+        ConfigClass conf=saveConfig();
+        utils.saveConfiguration(conf, filename);
     }
 
     @Override
@@ -183,7 +200,6 @@ public class ListDataNode<T> extends DataNode<T> {
     @Override
     public void newHashContainer() {
         hash.add(new ListHashContainer(writeSize));
-        writtenFilesIndex++;
     }
 
     public void writeObject(int writtenFilesIndex, T... data){
@@ -191,7 +207,7 @@ public class ListDataNode<T> extends DataNode<T> {
     }
     public int getMaxSize(int ind){
         ListHashContainer h=(ListHashContainer) hash.get(ind);
-        return h.getMaxSize();
+        return h.realSize();
     }
 
 
@@ -218,6 +234,7 @@ public class ListDataNode<T> extends DataNode<T> {
         public boolean add(T2 t) {
             if (hash.get(writtenFilesIndex).isFull()){
                 newHashContainer();
+                writtenFilesIndex++;
             }
             addElement((T)t, writtenFilesIndex);
             writeObject(writtenFilesIndex, (T)t);

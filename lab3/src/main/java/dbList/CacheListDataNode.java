@@ -32,12 +32,11 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
 //    }
 
     @Override
-    public void readConfiguration() {
-        ConfigClass conf=utils.readConfiguration();
-        hash=new ArrayList<>(conf.getHash());
-        size=conf.getSize();
-        writtenFilesIndex=conf.getWrittenFiles();
+    public void readConfiguration(String filename) {
+        super.readConfiguration(filename);
+        ConfigClass conf=utils.readConfiguration(filename);
         cache=(T[])conf.getCache();
+        blocksize=conf.getBlocksize();
     }
     @Override
     public boolean add(T t) {
@@ -46,11 +45,15 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     private boolean superAdd(T t){
         return super.add(t);
     }
+    public void emptyCondition(){
+        super.emptyCondition();
+        blockCounter=0;
+    }
 
     public T readObject(int i, int j){
         int blockIndex=j/blocksize;
         int elementIndex=j%blocksize;
-        T t=null;
+        T t;
         if (i==getWrittenFilesIndex() &&blockCounter==blockIndex) {
             t=cache[elementIndex];
         }
@@ -69,10 +72,8 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
         int siz=getMaxSize(ind);
         if (siz!=0 && siz%blocksize==0){
             writeObject(ind, cache);
-//            utils.readFromBlock(ind,1,0);
             Arrays.fill(cache, null);
             blockCounter++;
-//            super.addElement(t2, ind);
         }
         int indx=siz%blocksize;
         cache[indx]= t2;
@@ -89,6 +90,24 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     public void writeObject(int writtenFilesIndex, T... data){
         if (data.length==1) return;
         utils.writeBlock(cache, writtenFilesIndex);
+    }
+
+    public void fileMerge(int i){
+        utils.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices(), blocksize);
+    }
+
+    @Override
+    public ConfigClass saveConfig() {
+        ConfigClass conf=super.saveConfig();
+        conf.setCache(cache);
+        conf.setBlocksize(blocksize);
+        return conf;
+    }
+
+    @Override
+    public void save(String filename) {
+        ConfigClass conf=saveConfig();
+        utils.saveConfiguration(conf, filename);
     }
 
     private class InitialState<T1> extends State<T1>{

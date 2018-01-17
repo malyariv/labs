@@ -15,7 +15,7 @@ public class DBSmartList<T> implements List<T> {
     public DBSmartList(String adr, boolean open){
         cacheDataNode=new CacheListDataNode<>(adr);
         if (open){
-            cacheDataNode.readConfiguration();
+            cacheDataNode.readConfiguration("dbCacheList");
         }
         else {
             cacheDataNode.clearDirectory();
@@ -151,5 +151,9 @@ public class DBSmartList<T> implements List<T> {
         for (T t1:c){
             add(t1);
         }
+    }
+
+    public void save(){
+        cacheDataNode.save("dbCacheList");
     }
 }

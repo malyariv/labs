@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetDataNode<T> extends DataNode<T> {
-//    private final int fileSizeMb=300;
-    private int writeSize=50_000;
-
+    private int writeSize;
     private List<HashContainer> hash=new ArrayList<>();
     private int size=0, writtenFilesIndex=0;
     private T t=null;
     private FileUtils utils;
     private State<T> currentState=new InitialState();
     private State<T> after=null;
+    private int[] indcs=new int[2];
 
     public SetDataNode(String folder){
         utils=new FileUtils(folder);
@@ -27,8 +26,8 @@ public class SetDataNode<T> extends DataNode<T> {
         return size;
     }
 
-    public void readConfiguration(){
-        ConfigClass conf=utils.readConfiguration();
+    public void readConfiguration(String filename){
+        ConfigClass conf=utils.readConfiguration(filename);
         hash=new ArrayList<>(conf.getHash());
         size=conf.getSize();
         writtenFilesIndex=conf.getWrittenFiles();
@@ -39,19 +38,32 @@ public class SetDataNode<T> extends DataNode<T> {
     }
 
     public int indexOf(Object o){
+        indcs[0]=-1;
         int h=o.hashCode();
         int indx=-1;
         for(int i=0;i<=writtenFilesIndex;i++){
             indx=hash.get(i).getIndex(h);
             if (indx==-1) continue;
             T t = (T) utils.readObject(i, indx + 1);
-            if (t.equals(o)) return indx;
+            if (t.equals(o)) {
+                indcs[0]=i;
+                indcs[1]=indx+1;
+                return indx;
+            }
         }
         return indx;
     }
 
+    public int[] getIndices(Object o){
+        indexOf(o);
+        return indcs.clone();
+    }
+
     public T get(int index){
         return (T)utils.readObject(calculateFileIndex(index), calculateElementIndex(index)+1);
+    }
+    public T get(int[] index){
+        return (T)utils.readObject(index[0],index[1]);
     }
 
     public boolean add(T t){
@@ -68,8 +80,11 @@ public class SetDataNode<T> extends DataNode<T> {
             if (t.equals(o)) {
                 size--;
                 if (simplyRemove(indx, i, hash, writtenFilesIndex, utils)) {
-                    writtenFilesIndex--;
+                    if (writtenFilesIndex>0) {
+                        writtenFilesIndex--;
+                    }
                 }
+
                 return true;
             }
         }
@@ -78,7 +93,16 @@ public class SetDataNode<T> extends DataNode<T> {
     public void remove(int index){
         int i=calculateFileIndex(index);
         int j=calculateElementIndex(index);
-        hash.get(i).remove(j);
+        size--;
+        if (simplyRemove(j, i, hash, writtenFilesIndex, utils)) {
+            writtenFilesIndex--;
+        }
+    }
+    public void remove(int[] ind){
+        size--;
+        if (simplyRemove(ind[1]-1, ind[0], hash, writtenFilesIndex, utils)) {
+            writtenFilesIndex--;
+        }
     }
 
     public void clear(){
@@ -102,12 +126,18 @@ public class SetDataNode<T> extends DataNode<T> {
         utils.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices());
     }
 
-    public void save(){
-//        ConfigClass conf=new ConfigClass();
-//        conf.setHash(hash);
-//        conf.setSize(size);
-//        conf.setWrittenFiles(writtenFilesIndex);
-//        utils.saveConfiguration(conf);
+    @Override
+    public ConfigClass saveConfig() {
+        ConfigClass conf=new ConfigClass();
+        conf.setHash(hash);
+        conf.setSize(size);
+        conf.setWrittenFiles(writtenFilesIndex);
+        return conf;
+    }
+
+    public void save(String filename){
+        ConfigClass conf=saveConfig();
+        utils.saveConfiguration(conf, filename);
     }
     @Override
     public void addElement(T t, int ind) {
@@ -119,7 +149,7 @@ public class SetDataNode<T> extends DataNode<T> {
     @Override
     public void newHashContainer() {
         hash.add(new SetHashContainer(writeSize));
-        writtenFilesIndex++;
+
     }
 
     public void setState(States s) {
@@ -143,7 +173,7 @@ public class SetDataNode<T> extends DataNode<T> {
                 t = (T) data;
                 int fileSize=utils.getFileSize(data);
                 writeSize=getWriteSize(fileSize);
-                hash.add(new SetHashContainer(writeSize));
+                newHashContainer();
                 currentState=after;
             }
             else {
@@ -170,6 +200,7 @@ public class SetDataNode<T> extends DataNode<T> {
         public boolean add(T3 t) {
             if (hash.get(writtenFilesIndex).isFull()){
                 newHashContainer();
+                writtenFilesIndex++;
             }
             addElement((T)t, writtenFilesIndex);
             return true;
@@ -183,11 +214,14 @@ public class SetDataNode<T> extends DataNode<T> {
             i-=hash.get(j).size();
         }
         return writtenFilesIndex;
+//        return i/writeSize;
     }
 
     private int calculateElementIndex(int i) {
         for (int j=0;j<=writtenFilesIndex;j++){
-            if (i-hash.get(j).size()<0) return hash.get(j).getRealIndex(i);
+            if (i-hash.get(j).size()<0) {
+                return hash.get(j).getRealIndex(i);
+            }
             i-=hash.get(j).size();
         }
         return hash.get(writtenFilesIndex).getRealIndex(i);

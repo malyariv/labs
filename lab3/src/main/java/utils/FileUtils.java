@@ -8,6 +8,10 @@ public class FileUtils<T> {
 
     public FileUtils(String folder){
         adr=folder;
+        File f=new File(adr);
+        if (!f.exists()) {
+            f.mkdir();
+        }
     }
 
     public Object readObject(int fileIndex, int elementIndex) {
@@ -51,7 +55,7 @@ public class FileUtils<T> {
         write(data, filename,indexname);
     }
 
-    private void write(Object data, String filename, String indexname){
+    public void write(Object data, String filename, String indexname){
         int length=(int)new File(filename).length();
         try (DataOutputStream dis=new DataOutputStream(new FileOutputStream(filename, true));
              ObjectOutputStream oos=new ObjectOutputStream(dis);
@@ -122,16 +126,16 @@ public class FileUtils<T> {
         new File(buffertxt).renameTo(new File(adr+fileIndex+".txt"));
     }
 
-    public ConfigClass readConfiguration(){
+    public ConfigClass readConfiguration(String filename){
         ConfigClass h=null;
-        try (ObjectInputStream ois=new ObjectInputStream(new FileInputStream(adr+"config.txt"))){
+        try (ObjectInputStream ois=new ObjectInputStream(new FileInputStream(adr+filename+"Config.txt"))){
             h=(ConfigClass)ois.readObject();
         }catch (IOException|ClassNotFoundException e){e.printStackTrace();}
         return h;
     }
 
-    public void saveConfiguration(ConfigClass conf){
-        try (ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(adr+"config.txt"))){
+    public void saveConfiguration(ConfigClass conf, String name){
+        try (ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(adr+name+"Config.txt"))){
             oos.writeObject(conf);
         }catch (IOException e){e.printStackTrace();}
     }

@@ -5,15 +5,27 @@ import testData.MyData;
 import java.util.*;
 
 public class Main {
-    private static final String adr="/home/ivan/NetCracker/MapDB/src/main/java/Data/";
+    private static final String adr="/home/ivan/NetCracker/lab3/src/main/java/Data/";
     public static void main(String[] args) {
-//        List<HashContainer> q=new ArrayList<>();
-//        q.add(new ListHashContainer(10));
-//        List<ListHashContainer> w=new ArrayList<>();
-//        List<HashContainer> e=new ArrayList<>(w);
-        long time=System.currentTimeMillis();
-        new Main().run();
-        System.out.println("\n Required time "+(System.currentTimeMillis()-time)/100+" ds");
+//        long time=System.currentTimeMillis();
+//        new Main().run();
+//        System.out.println("\n Required time "+(System.currentTimeMillis()-time)/100+" ds");
+
+//        DBSet<MyData> set1=new DBSet<MyData>(adr,false);
+//        set1.add(new MyData());
+//        set1.add(new MyData());
+//        set1.add(new MyData());
+//        System.out.println("set1="+Arrays.toString(set1.toArray()));
+//        System.out.println();
+//        set1.save();
+
+        DBSet<MyData> set2=new DBSet<MyData>(adr,true);
+        System.out.println("set2="+Arrays.toString(set2.toArray()));
+
+//        set1=null;
+//        System.out.println("set1="+set1);
+//        System.out.println("set2="+Arrays.toString(set2.toArray()));
+
 //        long freeMemory = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory();
 //        System.out.println(freeMemory/1024/1024);
     }

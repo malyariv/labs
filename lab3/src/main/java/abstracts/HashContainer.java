@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 public abstract class HashContainer {
     public abstract int size();
+    public abstract int realSize();
     public abstract boolean isFull();
     public abstract void add(int i);
     public void add(int val, int ind){}

@@ -13,7 +13,7 @@ public class DBSafeList<T> implements List<T> {
     public DBSafeList(String adr, boolean open){
         listDataNode=new ListDataNode<>(adr);
         if (open){
-            listDataNode.readConfiguration();
+            listDataNode.readConfiguration("dbList");
         }
         else {
             listDataNode.clearDirectory();
@@ -155,5 +155,9 @@ public class DBSafeList<T> implements List<T> {
         for (T t1:c){
             add(t1);
         }
+    }
+
+    public void save(){
+        listDataNode.save("dbList");
     }
 }

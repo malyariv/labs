@@ -27,7 +27,7 @@ public class ListHashContainer extends HashContainer implements Serializable {
         return currentSize;
     }
 
-    public int getMaxSize(){ return maxSize;}
+    public int realSize(){ return maxSize;}
 
     @Override
     public boolean isFull() {

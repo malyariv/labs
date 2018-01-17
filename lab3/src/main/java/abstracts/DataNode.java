@@ -1,5 +1,6 @@
 package abstracts;
 
+import utils.ConfigClass;
 import utils.FileUtils;
 
 import java.io.Serializable;
@@ -37,7 +38,7 @@ public abstract class DataNode<T> implements Iterable<T>{
             }
         };
     }
-    public abstract void readConfiguration();
+    public abstract void readConfiguration(String filename);
     public abstract void clearDirectory();
     public abstract int indexOf(Object o);
     public abstract T get(int index);
@@ -56,6 +57,9 @@ public abstract class DataNode<T> implements Iterable<T>{
             hash.remove(i);
             if (i!=0) i--;
             flag=true;
+            if (size()==0) {
+                newHashContainer();
+            }
         }
 
         if (i < writtenFilesIndex) {
@@ -78,7 +82,8 @@ public abstract class DataNode<T> implements Iterable<T>{
     }
 
     public abstract void clear();
-    public abstract void save();
+    public abstract void save(String filename);
+    public abstract ConfigClass saveConfig();
     public Object[] toArray() {
         Object[] array=new Object[size()];
         int i=0;

@@ -20,6 +20,11 @@ public class SetHashContainer extends HashContainer implements Serializable  {
         return currentSize;
     }
 
+    @Override
+    public int realSize() {
+        return maxSize;
+    }
+
     public boolean isFull(){
         return maxSize==array.length;
     }
@@ -83,6 +88,7 @@ public class SetHashContainer extends HashContainer implements Serializable  {
         throw new IllegalArgumentException();
     }
     public int getIndex(int value){
+        int ind=-1;
         for (int i=0;i<maxSize;i++){
             if (array[i]==value&&booleans[i]) return i;
         }
@@ -90,12 +96,12 @@ public class SetHashContainer extends HashContainer implements Serializable  {
     }
 
     public int getRealIndex(int ind){
-        int index=0;
+        int index=-1;
         for (int i=0;i<maxSize;i++){
-            if (booleans[i]&&ind==index) return i;
             if (booleans[i]) index++;
+            if (booleans[i]&&ind==index) return i;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("getRealIndex");
     }
 
     public double getLoadFactor(){
