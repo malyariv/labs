@@ -2,7 +2,6 @@ package dbQueue;
 
 import dbSet.SetDataNode;
 import utils.States;
-
 import java.util.*;
 
 public class DBSafeQueue<T> implements Queue<T> {

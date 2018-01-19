@@ -151,7 +151,6 @@ public class SetDataNode<T> extends DataNode<T> {
     @Override
     public void newHashContainer() {
         hash.add(new SetHashContainer(writeSize));
-
     }
 
     public void setState(States s) {
@@ -208,7 +207,6 @@ public class SetDataNode<T> extends DataNode<T> {
             return true;
         }
     }
-
 
     private int calculateFileIndex(int i) {
         for (int j=0;j<=writtenFilesIndex;j++){
