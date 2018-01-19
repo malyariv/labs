@@ -2,6 +2,8 @@ package dbSet;
 
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import utils.*;
+
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
@@ -92,9 +94,10 @@ public class DBSet<T> implements Set<T> {
     @Override
     public boolean retainAll(Collection<?> c) {
         boolean flag=false;
-        for (T t:this){
-            if (!c.contains(t)) {
-                remove(t);
+        Iterator<T> iterator=iterator();
+        while (iterator.hasNext()){
+            if (!c.contains(iterator.next())) {
+                iterator.remove();
                 flag = true;
             }
         }
@@ -131,5 +134,9 @@ public class DBSet<T> implements Set<T> {
         long freeMemory = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory();
         if (t==null) throw new IllegalArgumentException("Set is empty");
         return (int) (freeMemory / ObjectSizeCalculator.getObjectSize(t));
+    }
+    @Override
+    public String toString() {
+        return Arrays.toString(toArray());
     }
 }

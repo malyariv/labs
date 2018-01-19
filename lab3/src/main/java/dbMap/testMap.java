@@ -19,17 +19,48 @@ public class testMap {
             System.out.println(entry);
         }
 
-        System.out.println("\n"+map.put("1",new MyData())+"\n");
+        map.clear();
+        for (Map.Entry<String,MyData> entry:map.entrySet()){
+            System.out.println(entry);
+        }
+        System.out.println(map.size());
+
+        map.put("1", new MyData());
+        map.put("2", new MyData());
+        map.put("3", new MyData());
+        map.put("4", new MyData());
 
         for (Map.Entry<String,MyData> entry:map.entrySet()){
             System.out.println(entry);
         }
 
-        System.out.println("\n"+map.put("1",new MyData())+"\n");
+        map.clear();
+        for (Map.Entry<String,MyData> entry:map.entrySet()){
+            System.out.println(entry);
+        }
+        System.out.println(map.size());
+        map.remove("1");
+        map.remove("1");
+        map.remove("2");
+        map.remove("3");
+        map.remove("4");
 
         for (Map.Entry<String,MyData> entry:map.entrySet()){
             System.out.println(entry);
         }
+
+//
+//        System.out.println("\n"+map.put("1",new MyData())+"\n");
+//
+//        for (Map.Entry<String,MyData> entry:map.entrySet()){
+//            System.out.println(entry);
+//        }
+//
+//        System.out.println("\n"+map.put("1",new MyData())+"\n");
+//
+//        for (Map.Entry<String,MyData> entry:map.entrySet()){
+//            System.out.println(entry);
+//        }
 
 
 

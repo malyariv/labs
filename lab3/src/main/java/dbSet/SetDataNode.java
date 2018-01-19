@@ -106,6 +106,8 @@ public class SetDataNode<T> extends DataNode<T> {
     }
 
     public void clear(){
+        hash=new ArrayList<>();
+        newHashContainer();
         utils.clearDirectory();
         size=0;
         writtenFilesIndex=0;
@@ -214,7 +216,6 @@ public class SetDataNode<T> extends DataNode<T> {
             i-=hash.get(j).size();
         }
         return writtenFilesIndex;
-//        return i/writeSize;
     }
 
     private int calculateElementIndex(int i) {
@@ -227,19 +228,7 @@ public class SetDataNode<T> extends DataNode<T> {
         return hash.get(writtenFilesIndex).getRealIndex(i);
     }
 
-//    @Override
-//    public boolean containerMerge(int i, Supplier<HashContainer> h) {
-//        double load1=hash.get(i).getLoadFactor();
-//        double load2=hash.get(i+1).getLoadFactor();
-//        if(load1+load2<1) {
-//            SetHashContainer h1=(SetHashContainer) h.get();
-//            hash.set(i,h1);
-//            hash.remove(i+1);
-//
-//            return true;
-//        }
-//        return false;
-//    }
+
 
 
 }

@@ -1,12 +1,10 @@
 package dbList;
 
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
-import dbList.ListDataNode;
-
 import java.util.*;
 
-public class DBSafeList<T> implements List<T> {
 
+public class DBSafeList<T> implements List<T> {
     private T t=null;
     private ListDataNode<T> listDataNode;
 
@@ -20,11 +18,11 @@ public class DBSafeList<T> implements List<T> {
         }
     }
 
-    public DBSafeList(String folder, Collection<T> c){
-        listDataNode =new ListDataNode<>(folder);
-        listDataNode.clearDirectory();
-        copyFromCollection(c);
-    }
+//    public DBSafeList(String folder, Collection<T> c){
+//        listDataNode =new ListDataNode<>(folder);
+//        listDataNode.clearDirectory();
+//        copyFromCollection(c);
+//    }
 
     @Override
     public int size() {
@@ -70,27 +68,51 @@ public class DBSafeList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        for (Object ob:c){
+            if (!contains(ob)) return false;
+        }
+        return true;
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        boolean flag=false;
+        for (T t1:c){
+            if (listDataNode.add(t1)) flag=true;
+        }
+        return flag;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        if (index>size()) throw new IllegalArgumentException();
+        int s=size();
+        for (T t1:c) {
+            add(index++, t1);
+        }
+        return s!=size();
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean flag=false;
+        for (Object ob:c){
+            if (remove(ob)) flag=true;
+        }
+        return flag;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        boolean flag=false;
+        Iterator<T> iterator=iterator();
+        while (iterator.hasNext()){
+            if (!c.contains(iterator.next())) {
+                iterator.remove();
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     @Override
@@ -105,11 +127,13 @@ public class DBSafeList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
+        if (index>size()) throw new IllegalArgumentException();
         return listDataNode.set(index, element);
     }
 
     @Override
     public void add(int index, T element) {
+        if (index>size()) throw new IllegalArgumentException();
         listDataNode.insert(index, element);
     }
 
@@ -132,17 +156,100 @@ public class DBSafeList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        return null;
+        return listIterator(0);
     }
 
     @Override
-    public ListIterator<T> listIterator(int index) {
-        return null;
+    public ListIterator<T> listIterator(int ind) {
+        if (ind<0||ind>=size()) {
+            throw new IllegalArgumentException();
+        }
+        return new ListIterator<T>() {
+            private int count = size();
+            private int index = ind;
+            private boolean next=false;
+
+            private int getIndex(){
+                if (ind+index<size()) {
+                    return ind+index;
+                }
+                return ind+index-size();
+            }
+
+            @Override
+            public boolean hasNext() {
+                return index < count;
+            }
+
+            @Override
+            public T next() {
+                if (index < count) {
+                    next=true;
+                    return t=get(index++);
+                } else {
+                    throw new NoSuchElementException("No such element.");
+                }
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return index>0;
+            }
+
+            @Override
+            public T previous() {
+                if (index >0) {
+                    next=false;
+                    return t=get(--index);
+                } else {
+                    throw new NoSuchElementException("No such element.");
+                }
+            }
+
+            @Override
+            public int nextIndex() {
+                return index;
+            }
+
+            @Override
+            public int previousIndex() {
+                return index-1;
+            }
+
+            @Override
+            public void remove() {
+                if (next) {
+                    index--;
+                }
+                DBSafeList.this.remove(index);
+                count=size();
+            }
+
+            @Override
+            public void set(T t) {
+                if (next) {
+                    index--;
+                }
+                DBSafeList.this.set(index++,t);
+            }
+
+            @Override
+            public void add(T t) {
+                DBSafeList.this.add(index,t);
+                count=size();
+            }
+        };
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        if (fromIndex>=size()) throw new IllegalArgumentException();
+        int to=Math.min(size(),toIndex);
+        List<T> list=new ArrayList<>();
+        for (int i=fromIndex;i<to;i++){
+           list.add(get(i));
+        }
+        return list;
     }
 
     public int getMaxSize(){
@@ -159,5 +266,9 @@ public class DBSafeList<T> implements List<T> {
 
     public void save(){
         listDataNode.save("dbList");
+    }
+
+    public String toString() {
+        return Arrays.toString(toArray());
     }
 }

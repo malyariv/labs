@@ -11,16 +11,25 @@ public class Main {
 //        new Main().run();
 //        System.out.println("\n Required time "+(System.currentTimeMillis()-time)/100+" ds");
 
-//        DBSet<MyData> set1=new DBSet<MyData>(adr,false);
-//        set1.add(new MyData());
-//        set1.add(new MyData());
-//        set1.add(new MyData());
-//        System.out.println("set1="+Arrays.toString(set1.toArray()));
-//        System.out.println();
+        DBSet<MyData> set1=new DBSet<MyData>(adr,false);
+        set1.clear();
+        set1.add(new MyData());
+        set1.add(new MyData());
+        set1.add(new MyData());
+        System.out.println("set1="+Arrays.toString(set1.toArray()));
+        System.out.println();
+        set1.clear();
+        System.out.println("set1="+Arrays.toString(set1.toArray()));
+        System.out.println();
+        set1.add(new MyData());
+        set1.add(new MyData());
+        set1.add(new MyData());
+        System.out.println("set1="+Arrays.toString(set1.toArray()));
+
 //        set1.save();
 
-        DBSet<MyData> set2=new DBSet<MyData>(adr,true);
-        System.out.println("set2="+Arrays.toString(set2.toArray()));
+//        DBSet<MyData> set2=new DBSet<MyData>(adr,true);
+//        System.out.println("set2="+Arrays.toString(set2.toArray()));
 
 //        set1=null;
 //        System.out.println("set1="+set1);

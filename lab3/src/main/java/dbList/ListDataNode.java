@@ -133,6 +133,7 @@ public class ListDataNode<T> extends DataNode<T> {
 
     public T set(int index, T element){
         T t=get(index);
+        if (t.equals(element)) return t;
         justRemove(index);
         currentState.add(element);
         hash.get(writtenFilesIndex).setIndexOfLastElement(index);
@@ -148,6 +149,8 @@ public class ListDataNode<T> extends DataNode<T> {
 
     @Override
     public void clear() {
+        hash=new ArrayList<>();
+        newHashContainer();
         utils.clearDirectory();
         size=0;
         writtenFilesIndex=0;

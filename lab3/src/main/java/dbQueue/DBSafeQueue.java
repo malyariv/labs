@@ -3,10 +3,7 @@ package dbQueue;
 import dbSet.SetDataNode;
 import utils.States;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.*;
 
 public class DBSafeQueue<T> implements Queue<T> {
     private T t=null;
@@ -84,12 +81,24 @@ public class DBSafeQueue<T> implements Queue<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean flag=false;
+        for (Object ob:c){
+            if (remove(ob)) flag=true;
+        }
+        return flag;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        boolean flag=false;
+        Iterator<T> iterator=iterator();
+        while (iterator.hasNext()){
+            if (!c.contains(iterator.next())) {
+                iterator.remove();
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     @Override
@@ -140,5 +149,10 @@ public class DBSafeQueue<T> implements Queue<T> {
 
     public void save(){
         setDataNode.save("dbQueue");
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(toArray());
     }
 }

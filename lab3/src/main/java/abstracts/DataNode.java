@@ -4,6 +4,7 @@ import utils.ConfigClass;
 import utils.FileUtils;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,8 +33,7 @@ public abstract class DataNode<T> implements Iterable<T>{
             }
             @Override
             public void remove() {
-                DataNode.this.remove(t);
-                index--;
+                DataNode.this.remove(--index);
                 count=size();
             }
         };
@@ -129,4 +129,5 @@ public abstract class DataNode<T> implements Iterable<T>{
 
     public abstract void addElement(T t, int ind);
     public abstract void newHashContainer();
+
 }
