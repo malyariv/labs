@@ -1,9 +1,9 @@
 package dbMap;
 
-import concurrent.DBConcurrentMap;
+import concurrent.DBSynchronizedMap;
 import testData.MyData;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 
 public class testMap {
@@ -11,7 +11,7 @@ public class testMap {
     private static final String adr="/home/ivan/NetCracker/lab3/src/main/java/Data/";
 
     public static void main(String[] args) {
-        Map<String,MyData> map=new DBConcurrentMap<>(new DBSafeMap<>(adr,false));
+        Map<String,MyData> map=new DBSynchronizedMap<>(new DBSafeMap<>(adr,false));
 //        Map<String,MyData> map=new DBSafeMap<>(adr,false);
 
         map.put("1", new MyData());

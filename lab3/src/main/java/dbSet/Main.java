@@ -1,6 +1,6 @@
 package dbSet;
 
-import concurrent.DBConcurrentSet;
+import concurrent.DBSynchronizedSet;
 import testData.MyData;
 
 import java.util.*;
@@ -12,7 +12,7 @@ public class Main {
 //        new Main().run();
 //        System.out.println("\n Required time "+(System.currentTimeMillis()-time)/100+" ds");
 
-        DBConcurrentSet<String> set1=new DBConcurrentSet<>(new DBSet<String>(adr,false));
+        DBSynchronizedSet<String> set1=new DBSynchronizedSet<>(new DBSet<String>(adr,false));
         set1.add("2");
         set1.add("3");
         set1.add("1");
