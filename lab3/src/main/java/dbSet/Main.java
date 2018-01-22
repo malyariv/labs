@@ -13,9 +13,17 @@ public class Main {
 //        System.out.println("\n Required time "+(System.currentTimeMillis()-time)/100+" ds");
 
         DBSynchronizedSet<String> set1=new DBSynchronizedSet<>(new DBSet<String>(adr,false));
+        set1.add("0");
+        set1.add("1");
         set1.add("2");
         set1.add("3");
-        set1.add("1");
+        set1.add("4");
+        set1.add("5");
+        set1.add("6");
+        System.out.println("set1="+set1);
+
+        set1.remove("1");
+        set1.remove("0");
         System.out.println("set1="+set1);
 
 

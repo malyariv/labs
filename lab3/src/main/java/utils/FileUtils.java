@@ -23,7 +23,9 @@ public class FileUtils<T> {
             raf.seek(offsetLength[0]);
             buffer=new byte[offsetLength[1]];
             raf.read(buffer);
-        }catch (IOException e){e.printStackTrace();}
+        }catch (IOException e){
+//            e.printStackTrace();
+        }
 
         return getObject(buffer);
     }
@@ -32,7 +34,9 @@ public class FileUtils<T> {
         Object t=null;
         try(ObjectInputStream oos=new ObjectInputStream(new ByteArrayInputStream(bytes))){
             t= oos.readObject();
-        }catch (IOException|ClassNotFoundException e){e.printStackTrace();}
+        }catch (IOException|ClassNotFoundException e){
+//            e.printStackTrace();
+        }
         return t;
     }
 
@@ -45,7 +49,9 @@ public class FileUtils<T> {
                 offsetLength[0]=raf.readInt();
             }
             offsetLength[1]=(raf.readInt()-offsetLength[0]);
-        }catch (IOException e){e.printStackTrace();}
+        }catch (IOException e){
+//            e.printStackTrace();
+        }
         return offsetLength;
     }
 

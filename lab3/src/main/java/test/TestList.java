@@ -107,7 +107,7 @@ public class TestList {
             myList.clear();
         }
         MyData element=new MyData();
-        int arraySize=90_000;
+        int arraySize=150_000;
         MyData[] array=new MyData[arraySize];
         for (int i=0;i<arraySize;i++){
             array[i]=new MyData();

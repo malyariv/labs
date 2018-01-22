@@ -40,9 +40,7 @@ public class TestConcurrent {
 
         }).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()->{
                 for (int i = 0; i < 10; i++) {
                     set.contains("hello");
                 }
@@ -53,8 +51,8 @@ public class TestConcurrent {
                 }
                 System.out.println("Third thread is over");
             }
+        ).start();
 
-        }).start();
         new Thread(new Runnable() {
             @Override
             public void run() {

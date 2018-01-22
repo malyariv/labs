@@ -10,31 +10,12 @@ import java.util.List;
 
 public class SetDataNode<T> extends DataNode<T> {
     private int writeSize;
-    private List<HashContainer> hash=new ArrayList<>();
-    private int size=0, writtenFilesIndex=0;
-    private T t=null;
-    private FileUtils utils;
     private State<T> currentState=new InitialState();
     private State<T> after=null;
     private int[] indcs=new int[2];
 
     public SetDataNode(String folder){
         utils=new FileUtils(folder);
-    }
-
-    public int size(){
-        return size;
-    }
-
-    public void readConfiguration(String filename){
-        ConfigClass conf=utils.readConfiguration(filename);
-        hash=new ArrayList<>(conf.getHash());
-        size=conf.getSize();
-        writtenFilesIndex=conf.getWrittenFiles();
-    }
-
-    public void clearDirectory() {
-        utils.clearDirectory();
     }
 
     public int indexOf(Object o){
@@ -79,7 +60,7 @@ public class SetDataNode<T> extends DataNode<T> {
             T t = (T) utils.readObject(i, indx + 1);
             if (t.equals(o)) {
                 size--;
-                if (simplyRemove(indx, i, hash, writtenFilesIndex, utils)) {
+                if (simplyRemove(indx, i)) {
                     if (writtenFilesIndex>0) {
                         writtenFilesIndex--;
                     }
@@ -94,23 +75,16 @@ public class SetDataNode<T> extends DataNode<T> {
         int i=calculateFileIndex(index);
         int j=calculateElementIndex(index);
         size--;
-        if (simplyRemove(j, i, hash, writtenFilesIndex, utils)) {
-            writtenFilesIndex--;
-        }
-    }
-    public void remove(int[] ind){
-        size--;
-        if (simplyRemove(ind[1]-1, ind[0], hash, writtenFilesIndex, utils)) {
+        if (simplyRemove(j, i)) {
             writtenFilesIndex--;
         }
     }
 
-    public void clear(){
-        hash=new ArrayList<>();
-        newHashContainer();
-        utils.clearDirectory();
-        size=0;
-        writtenFilesIndex=0;
+    public void remove(int[] ind){
+        size--;
+        if (simplyRemove(ind[1]-1, ind[0])) {
+            writtenFilesIndex--;
+        }
     }
 
     @Override
@@ -124,23 +98,8 @@ public class SetDataNode<T> extends DataNode<T> {
         }
         return h;
     }
-    public void fileMerge(int i){
-        utils.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices());
-    }
 
-    @Override
-    public ConfigClass saveConfig() {
-        ConfigClass conf=new ConfigClass();
-        conf.setHash(hash);
-        conf.setSize(size);
-        conf.setWrittenFiles(writtenFilesIndex);
-        return conf;
-    }
 
-    public void save(String filename){
-        ConfigClass conf=saveConfig();
-        utils.saveConfiguration(conf, filename);
-    }
     @Override
     public void addElement(T t, int ind) {
         utils.write(t,ind);

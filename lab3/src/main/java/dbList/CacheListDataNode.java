@@ -11,13 +11,7 @@ import java.util.List;
 
 public class CacheListDataNode<T> extends ListDataNode<T> {
     private final double blockSizeMb=2;
-    //    private final int fileSizeMb=300;
-    private int writeSize=50_000;
     private int blocksize=1, blockCounter=0;
-    private List<ListHashContainer> hash=new ArrayList<>();
-    private int size=0, writtenFilesIndex=0;
-    private T t=null;
-    private FileUtilsExt utils;
     private State<T> currentState=new InitialState<>();
     private T[] cache=null;
 
@@ -26,25 +20,24 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
         utils=new FileUtilsExt(folder);
     }
 
-//    @Override
-//    public int size() {
-//        return size;
-//    }
+
 
     @Override
-    public void readConfiguration(String filename) {
-        super.readConfiguration(filename);
-        ConfigClass conf=utils.readConfiguration(filename);
+    public ConfigClass readConfiguration(String filename) {
+        ConfigClass conf =super.readConfiguration(filename);
         cache=(T[])conf.getCache();
         blocksize=conf.getBlocksize();
+        return conf;
     }
     @Override
     public boolean add(T t) {
         return currentState.add(t);
     }
+
     private boolean superAdd(T t){
         return super.add(t);
     }
+
     public void emptyCondition(){
         super.emptyCondition();
         blockCounter=0;
@@ -54,11 +47,12 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
         int blockIndex=j/blocksize;
         int elementIndex=j%blocksize;
         T t;
-        if (i==getWrittenFilesIndex() &&blockCounter==blockIndex) {
+        if (i==writtenFilesIndex &&blockCounter==blockIndex) {
             t=cache[elementIndex];
         }
         else {
-            t=(T)utils.readFromBlock(i, blockIndex+1, elementIndex);
+            FileUtilsExt<T> u=(FileUtilsExt<T>) utils;
+            t=(T)u.readFromBlock(i, blockIndex+1, elementIndex);
         }
         return t;
     }
@@ -69,10 +63,10 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     }
     @Override
     public void addElement(T t2, int ind) {
-        int siz=getMaxSize(ind);
+        int siz=hash.get(ind).realSize();
         if (siz!=0 && siz%blocksize==0){
             writeObject(ind, cache);
-            Arrays.fill(cache, null);
+//            Arrays.fill(cache, null);
             blockCounter++;
         }
         int indx=siz%blocksize;
@@ -83,17 +77,21 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     @Override
     public void newHashContainer() {
         super.newHashContainer();
-        Arrays.fill(cache, null);
+//        Arrays.fill(cache, null);
         blockCounter=0;
     }
 
     public void writeObject(int writtenFilesIndex, T... data){
-        if (data.length==1) return;
+        if (data.length==1) {
+            return;
+        }
         utils.writeBlock(cache, writtenFilesIndex);
     }
 
     public void fileMerge(int i){
-        utils.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices(), blocksize);
+        FileUtilsExt<T> u=(FileUtilsExt<T>) utils;
+        int res=u.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices(), blocksize);
+        blockCounter=res;
     }
 
     @Override
@@ -105,18 +103,21 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     }
 
     @Override
-    public void save(String filename) {
-        ConfigClass conf=saveConfig();
-        utils.saveConfiguration(conf, filename);
+    public boolean mergeCondition(int i) {
+        int sum=hash.get(i).size()+hash.get(i+1).size();
+        return super.mergeCondition(i)&&sum%blocksize==0;
     }
+
 
     private class InitialState<T1> extends State<T1>{
         @Override
         public boolean add(T1 data) {
             int fileSize=utils.getFileSize(data);
             blocksize=getBlockSize(fileSize);
+
+//            blocksize=2;
+
             System.out.println("blockSize="+blocksize);
-//            blocksize=3;
             t=(T) data;
             currentState= new ListState<>();
             cache=(T[]) Array.newInstance(t.getClass(), blocksize);

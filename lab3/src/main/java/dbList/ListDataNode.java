@@ -11,35 +11,10 @@ import java.util.function.Predicate;
 
 public class ListDataNode<T> extends DataNode<T> {
     private int writeSize=0;
-    private List<HashContainer> hash=new ArrayList<>();
-    private int size=0, writtenFilesIndex=0;
-    private T t=null;
-    private FileUtils utils;
     private State<T> currentState=new InitialState();
 
     public ListDataNode(String folder){
         utils=new FileUtils(folder);
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-    public int getWrittenFilesIndex(){
-        return writtenFilesIndex;
-    }
-
-    @Override
-    public void readConfiguration(String filename) {
-        ConfigClass conf=utils.readConfiguration(filename);
-        hash=new ArrayList<>(conf.getHash());
-        size=conf.getSize();
-        writtenFilesIndex=conf.getWrittenFiles();
-    }
-
-    @Override
-    public void clearDirectory() {
-        utils.clearDirectory();
     }
 
     @Override
@@ -117,7 +92,7 @@ public class ListDataNode<T> extends DataNode<T> {
             }
             else {
                 size--;
-                if (simplyRemove(j, i, hash, writtenFilesIndex, utils)) {
+                if (simplyRemove(j, i)) {
                     if (writtenFilesIndex>0) {
                         writtenFilesIndex--;
                     }
@@ -147,16 +122,6 @@ public class ListDataNode<T> extends DataNode<T> {
         hash.get(writtenFilesIndex).setIndexOfLastElement(index);
     }
 
-    @Override
-    public void clear() {
-        hash=new ArrayList<>();
-        newHashContainer();
-        utils.clearDirectory();
-        size=0;
-        writtenFilesIndex=0;
-    }
-
-
 
     @Override
     public HashContainer copyDataFrom(HashContainer h1, HashContainer h2) {
@@ -176,24 +141,6 @@ public class ListDataNode<T> extends DataNode<T> {
         return h;
     }
 
-    public void fileMerge(int i){
-        utils.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices());
-    }
-
-    @Override
-    public ConfigClass saveConfig() {
-        ConfigClass conf=new ConfigClass();
-        conf.setHash(hash);
-        conf.setSize(size);
-        conf.setWrittenFiles(writtenFilesIndex);
-        return conf;
-    }
-
-    @Override
-    public void save(String filename) {
-        ConfigClass conf=saveConfig();
-        utils.saveConfiguration(conf, filename);
-    }
 
     @Override
     public void addElement(T t, int ind) {
@@ -206,11 +153,8 @@ public class ListDataNode<T> extends DataNode<T> {
     }
 
     public void writeObject(int writtenFilesIndex, T... data){
+        if (data.length==0) return;
         utils.write(data[0],writtenFilesIndex);
-    }
-    public int getMaxSize(int ind){
-        ListHashContainer h=(ListHashContainer) hash.get(ind);
-        return h.realSize();
     }
 
 
@@ -235,13 +179,15 @@ public class ListDataNode<T> extends DataNode<T> {
     private class ListState<T2> extends State<T2>{
         @Override
         public boolean add(T2 t) {
+            ListDataNode.this.t=(T)t;
             if (hash.get(writtenFilesIndex).isFull()){
+                writeObject(writtenFilesIndex);
                 newHashContainer();
                 writtenFilesIndex++;
             }
             addElement((T)t, writtenFilesIndex);
-            writeObject(writtenFilesIndex, (T)t);
-           return true;
+            writeObject(writtenFilesIndex, ListDataNode.this.t);
+            return true;
         }
     }
 
