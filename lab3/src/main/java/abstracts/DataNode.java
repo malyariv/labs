@@ -148,7 +148,7 @@ public abstract class DataNode<T> implements Iterable<T>{
 
 
     public int getWriteSize(int fileSize) {
-//        return 8;
+//        return 9;
         int max=fileSizeMb*1024*1024/fileSize;
         int limit=writeSize;
         while (limit>1){

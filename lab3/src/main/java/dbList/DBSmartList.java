@@ -2,10 +2,7 @@ package dbList;
 
 import dbList.CacheListDataNode;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class DBSmartList<T> implements List<T> {
 
@@ -50,7 +47,7 @@ public class DBSmartList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return cacheDataNode.toArray();
     }
 
     @Override
@@ -151,6 +148,10 @@ public class DBSmartList<T> implements List<T> {
         for (T t1:c){
             add(t1);
         }
+    }
+
+    public String toString() {
+        return Arrays.toString(toArray());
     }
 
     public void save(){

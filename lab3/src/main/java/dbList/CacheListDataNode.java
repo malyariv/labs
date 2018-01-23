@@ -14,6 +14,7 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     private int blocksize=1, blockCounter=0;
     private State<T> currentState=new InitialState<>();
     private T[] cache=null;
+    private int cacheIndex=0;
 
     public CacheListDataNode(String folder) {
         super(folder);
@@ -69,8 +70,8 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
 //            Arrays.fill(cache, null);
             blockCounter++;
         }
-        int indx=siz%blocksize;
-        cache[indx]= t2;
+        cacheIndex=siz%blocksize;
+        cache[cacheIndex]= t2;
         super.addElement(t2, ind);
     }
 
@@ -91,7 +92,9 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     public void fileMerge(int i){
         FileUtilsExt<T> u=(FileUtilsExt<T>) utils;
         int res=u.fileMerge(i,hash.get(i).getIndices(),hash.get(i+1).getIndices(), blocksize);
-        blockCounter=res;
+        if (res!=0) {
+            blockCounter = res;
+        }
     }
 
     @Override
@@ -104,8 +107,18 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
 
     @Override
     public boolean mergeCondition(int i) {
-        int sum=hash.get(i).size()+hash.get(i+1).size();
-        return super.mergeCondition(i)&&sum%blocksize==0;
+        if (super.mergeCondition(i)) {
+            int sum = hash.get(i).size() + hash.get(i + 1).size();
+            if (i+1==writtenFilesIndex) {
+                sum-=cacheIndex+1;
+                if (sum==hash.get(i).size()) {
+                    return false;
+                }
+                return sum % blocksize == 0;
+            }
+            return sum%blocksize==0;
+        }
+        return false;
     }
 
 
@@ -115,7 +128,7 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
             int fileSize=utils.getFileSize(data);
             blocksize=getBlockSize(fileSize);
 
-//            blocksize=2;
+//            blocksize=3;
 
             System.out.println("blockSize="+blocksize);
             t=(T) data;
