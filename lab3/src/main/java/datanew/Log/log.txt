@@ -1,0 +1,2 @@
+янв 25, 2018 6:16:23 PM abstracts.ADataNode getWriteSize
+INFO: Estimated file size is less 250 Mb, so element number in file is 50 000
