@@ -1,8 +1,6 @@
 package utils;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
 
 public class FileUtilsExt<T> extends FileUtils<T> {
 
@@ -23,6 +21,7 @@ public class FileUtilsExt<T> extends FileUtils<T> {
         }
         return cache[elementIndex];
     }
+
     public int fileMerge(int fileIndex, int[] indices1, int[] indices2, int blocksize){
         int shift=0;
         boolean flag=false;
@@ -67,8 +66,6 @@ public class FileUtilsExt<T> extends FileUtils<T> {
         else {
             flag=true;
         }
-//        super.write(Arrays.copyOf(localCache,currentIndex), buffer, buffertxt);
-//        shift++;
         new File(adr+fileIndex+".ser").delete();
         new File(adr+fileIndex+".txt").delete();
         new File(buffer).renameTo(new File(adr+fileIndex+".ser"));

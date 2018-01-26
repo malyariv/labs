@@ -1,6 +1,6 @@
 package concurrent;
 
-import dbQueue.DBSafeQueue;
+import dbQueue.DBQueue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.Queue;
 
 public class DBSynchronizedQueue<T> implements Queue<T> {
-    private final DBSafeQueue<T> q;
+    private final DBQueue<T> q;
 
-    public DBSynchronizedQueue(DBSafeQueue<T> q) {
+    public DBSynchronizedQueue(DBQueue<T> q) {
         this.q = q;
     }
 
@@ -106,6 +106,10 @@ public class DBSynchronizedQueue<T> implements Queue<T> {
 
     synchronized public void save(){
         q.save();
+    }
+
+    synchronized public void recover(String from,int p){
+        q.recover(from, p);
     }
 
     @Override

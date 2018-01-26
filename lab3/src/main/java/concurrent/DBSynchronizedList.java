@@ -1,13 +1,14 @@
 package concurrent;
 
-import dbList.DBSafeList;
+import dbList.DBList;
 
 import java.util.*;
 
 public class DBSynchronizedList<T> implements List<T> {
-    private final DBSafeList<T> list;
 
-    public DBSynchronizedList(DBSafeList<T> l){
+    private final DBList<T> list;
+
+    public DBSynchronizedList(DBList<T> l){
         list=l;
     }
     @Override
@@ -124,8 +125,13 @@ public class DBSynchronizedList<T> implements List<T> {
     synchronized public List<T> subList(int fromIndex, int toIndex) {
         return list.subList(fromIndex,toIndex);
     }
+
     synchronized public void save(){
         list.save();
+    }
+
+    synchronized public void recover(String from,int p){
+            list.recover(from, p);
     }
 
     @Override

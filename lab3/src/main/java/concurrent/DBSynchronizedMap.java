@@ -1,15 +1,15 @@
 package concurrent;
 
-import dbMap.DBSafeMap;
+import dbMap.DBMap;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
 public class DBSynchronizedMap<K,V> implements Map<K,V> {
-    private final DBSafeMap<K,V> map;
+    private final DBMap<K,V> map;
 
-    public DBSynchronizedMap(DBSafeMap<K,V> map) {
+    public DBSynchronizedMap(DBMap<K,V> map) {
         this.map = map;
     }
 
@@ -72,7 +72,12 @@ public class DBSynchronizedMap<K,V> implements Map<K,V> {
     synchronized public V put(K key, V value) {
         return map.put(key, value);
     }
+
     synchronized public void save(){
         map.save();
+    }
+
+    synchronized public void recover(String from,int p){
+        map.recover(from, p);
     }
 }

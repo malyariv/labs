@@ -1,12 +1,12 @@
 package test;
 
 import dbSet.DBSet;
-import testData.MyData;
+import testData.TestData;
 
 import java.util.*;
 
 public class TestSet {
-    DBSet<MyData> mySet=null;
+    DBSet<TestData> mySet=null;
     public static void main(String[] args) {
         new TestSet().run();
     }
@@ -14,12 +14,12 @@ public class TestSet {
         System.out.println("Эта программа предназначена для тестирования dbSet, позволяющей хранить данные на диске.");
         System.out.println("Для инициализации dbSet необходимо указать имя папки для хранения. \nПРЕДУПРЕЖДАЮ! Данные в папке будут удалены при инициализации!");
         System.out.println("В качесте тестовых данных будет выступать данные о людях. Размер одного объекта полрядка 2.2 kB. Всего 12285 уникальных варианта.");
-        System.out.println(new MyData());
+        System.out.println(new TestData());
         System.out.println("Для работы потребуется около 30 MB на жестком диске.");
         System.out.println("\nВведите название папки для хранения");
         Scanner scanner=new Scanner(System.in);
         String folder=scanner.nextLine();
-        mySet=new DBSet<MyData>(folder,false);
+        mySet=new DBSet<TestData>(folder,false);
         mainMenu();
         label:
         while (true){
@@ -42,7 +42,9 @@ public class TestSet {
         System.out.println("3. Выйти");
     }
     private void work(){
-        mySet.clear();
+        if (!mySet.isEmpty()) {
+            mySet.clear();
+        }
         workMenu();
         label:
         while (true){
@@ -71,7 +73,7 @@ public class TestSet {
         int q=Integer.valueOf(scanner.nextLine());
         int i=0;
         while (i<q){
-            if (mySet.add(new MyData())) i++;
+            if (mySet.add(new TestData())) i++;
         }
     }
     private void removeMenu(){
@@ -79,7 +81,7 @@ public class TestSet {
         Scanner scanner=new Scanner(System.in);
         int q=Integer.valueOf(scanner.nextLine());
         int i=0;
-        Iterator<MyData> iterator=mySet.iterator();
+        Iterator<TestData> iterator=mySet.iterator();
         while (i<q&&iterator.hasNext()){
             iterator.next();
             iterator.remove();
@@ -87,29 +89,31 @@ public class TestSet {
         }
     }
     private void print(){
-        for (MyData data:mySet){
+        for (TestData data:mySet){
             System.out.println(data);
         }
         System.out.println();
     }
     private void compare(){
-        mySet.clear();
+        if (!mySet.isEmpty()) {
+            mySet.clear();
+        }
         int arraySize=150_000;
-        MyData[] array=new MyData[arraySize];
+        TestData[] array=new TestData[arraySize];
         for (int i=0;i<arraySize;i++){
-            array[i]=new MyData();
+            array[i]=new TestData();
         }
         System.out.println("Был создан массив, содержащий "+arraySize+" случайных элементов.");
 
         long time=System.currentTimeMillis();
-        Set<MyData> trueSet=new HashSet<>(Arrays.asList(array));
+        Set<TestData> trueSet=new HashSet<>(Arrays.asList(array));
         time=System.currentTimeMillis()-time;
         System.out.println("Время заполнения HashSet составило "+time+" ms");
         System.out.println("Размер HashSet составил "+trueSet.size());
         System.out.println();
 
         time=System.currentTimeMillis();
-        for (MyData data:array){
+        for (TestData data:array){
             mySet.add(data);
         }
         time=System.currentTimeMillis()-time;
@@ -117,9 +121,9 @@ public class TestSet {
         System.out.println("Размер dbSet составил "+trueSet.size());
         System.out.println();
 
-        Set<MyData> newSet=new HashSet<>(trueSet);
+        Set<TestData> newSet=new HashSet<>(trueSet);
         time=System.currentTimeMillis();
-        for (MyData data:newSet){
+        for (TestData data:newSet){
             trueSet.remove(data);
         }
         time=System.currentTimeMillis()-time;
@@ -128,7 +132,7 @@ public class TestSet {
         System.out.println();
 
         time=System.currentTimeMillis();
-        for (MyData data:newSet){
+        for (TestData data:newSet){
             mySet.remove(data);
         }
         time=System.currentTimeMillis()-time;

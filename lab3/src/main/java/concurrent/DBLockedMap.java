@@ -1,6 +1,6 @@
 package concurrent;
 
-import dbMap.DBSafeMap;
+import dbMap.DBMap;
 
 import java.util.Collection;
 import java.util.Map;
@@ -11,12 +11,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class DBLockedMap<K,V> implements Map<K,V> {
 
-    private final DBSafeMap<K,V> map;
+    private final DBMap<K,V> map;
     private final ReadWriteLock rwl=new ReentrantReadWriteLock(true);
     private final Lock readLock=rwl.readLock();
     private final Lock writeLock=rwl.writeLock();
 
-    public DBLockedMap(DBSafeMap<K, V> map) {
+    public DBLockedMap(DBMap<K, V> map) {
         this.map = map;
     }
 
@@ -146,6 +146,16 @@ public class DBLockedMap<K,V> implements Map<K,V> {
         writeLock.lock();
         try {
             return map.entrySet();
+        }
+        finally {
+            writeLock.unlock();
+        }
+    }
+
+    public void recover(String from,int p){
+        writeLock.lock();
+        try {
+            map.recover(from, p);
         }
         finally {
             writeLock.unlock();

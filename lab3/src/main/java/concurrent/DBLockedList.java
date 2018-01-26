@@ -1,6 +1,6 @@
 package concurrent;
 
-import dbList.DBSafeList;
+import dbList.DBList;
 
 import java.util.*;
 import java.util.concurrent.locks.Lock;
@@ -9,12 +9,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class DBLockedList<T> implements List<T> {
 
-    private final DBSafeList<T> list;
+    private final DBList<T> list;
     private final ReadWriteLock rwl=new ReentrantReadWriteLock(true);
     private final Lock readLock=rwl.readLock();
     private final Lock writeLock=rwl.writeLock();
 
-    public DBLockedList(DBSafeList<T> list) {
+    public DBLockedList(DBList<T> list) {
         this.list = list;
     }
 
@@ -44,12 +44,10 @@ public class DBLockedList<T> implements List<T> {
     @Override
     public boolean contains(Object o) {
         readLock.lock();
-        System.out.println("Readlock is On");
         try {
             return list.contains(o);
         }
         finally {
-            System.out.println("Readlock is Off");
             readLock.unlock();
         }
     }
@@ -84,12 +82,10 @@ public class DBLockedList<T> implements List<T> {
     @Override
     public boolean add(T t) {
         writeLock.lock();
-        System.out.println("Writelock is On");
         try {
             return list.add(t);
         }
         finally {
-            System.out.println("Writelock is Off");
             writeLock.unlock();
         }
     }
@@ -272,6 +268,16 @@ public class DBLockedList<T> implements List<T> {
 
     public int getMaxSize(){
         return list.getMaxSize();
+    }
+
+    public void recover(String from,int p){
+        writeLock.lock();
+        try {
+            list.recover(from, p);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override

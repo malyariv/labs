@@ -1,10 +1,13 @@
 package utils;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileUtils<T> {
 
     private final String adr;
+    private Logger loger;
 
     public FileUtils(String folder){
         adr=folder;
@@ -20,11 +23,14 @@ public class FileUtils<T> {
         byte[] buffer=null;
         try(RandomAccessFile raf=new RandomAccessFile(filename,"r")){
             int[] offsetLength=getOffsetLength(indexname, elementIndex);
+            if (offsetLength==null){
+                return null;
+            }
             raf.seek(offsetLength[0]);
             buffer=new byte[offsetLength[1]];
             raf.read(buffer);
         }catch (IOException e){
-//            e.printStackTrace();
+            loger.log(Level.SEVERE,"Exception ",e);
         }
 
         return getObject(buffer);
@@ -35,7 +41,7 @@ public class FileUtils<T> {
         try(ObjectInputStream oos=new ObjectInputStream(new ByteArrayInputStream(bytes))){
             t= oos.readObject();
         }catch (IOException|ClassNotFoundException e){
-//            e.printStackTrace();
+            loger.log(Level.SEVERE,"Exception ",e);
         }
         return t;
     }
@@ -45,12 +51,15 @@ public class FileUtils<T> {
         try (RandomAccessFile raf=new RandomAccessFile(filename, "r")){
             if (elementIndex>1) {
                 offsetLength[0]=4*(elementIndex-2);
+                if (new File(filename).length()<=offsetLength[0]+4) {
+                    return null;
+                }
                 raf.seek(offsetLength[0]);
                 offsetLength[0]=raf.readInt();
             }
             offsetLength[1]=(raf.readInt()-offsetLength[0]);
         }catch (IOException e){
-//            e.printStackTrace();
+            loger.log(Level.SEVERE,"Exception ",e);
         }
         return offsetLength;
     }
@@ -69,7 +78,9 @@ public class FileUtils<T> {
             oos.writeObject(data);
             length+=dis.size();
             indexStream.writeInt(length);
-        }catch (IOException e){e.printStackTrace();}
+        }catch (IOException e){
+            loger.log(Level.SEVERE,"Exception ",e);
+             }
     }
 
 
@@ -77,7 +88,9 @@ public class FileUtils<T> {
     public void write(Object obj, String filename){
         try (ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(filename))){
             oos.writeObject(obj);
-        }catch (IOException e){e.printStackTrace();}
+        }catch (IOException e){
+            loger.log(Level.SEVERE,"Exception ",e);
+        }
     }
 
     public void writeBlock(T[] data, int writtenFilesIndex){
@@ -136,15 +149,19 @@ public class FileUtils<T> {
         ConfigClass h=null;
         try (ObjectInputStream ois=new ObjectInputStream(new FileInputStream(adr+filename+"Config.txt"))){
             h=(ConfigClass)ois.readObject();
-        }catch (IOException|ClassNotFoundException e){e.printStackTrace();}
+        }catch (IOException|ClassNotFoundException e){
+            loger.log(Level.SEVERE,"Exception ",e);}
         return h;
     }
 
     public void saveConfiguration(ConfigClass conf, String name){
         try (ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(adr+name+"Config.txt"))){
             oos.writeObject(conf);
-        }catch (IOException e){e.printStackTrace();}
+        }catch (IOException e){loger.log(Level.SEVERE,"Exception ",e);}
     }
 
+    public void setLoger(Logger loger){
+        this.loger=loger;
+    }
 
 }

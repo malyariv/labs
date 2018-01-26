@@ -1,23 +1,23 @@
 package utils;
 
-import abstracts.HashContainer;
+import abstracts.AHashContainer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigClass<T> implements Serializable{
-    private List<HashContainer> hash;
+    private List<AHashContainer> hash;
     private int size;
     private int writtenFiles;
     private int blocksize;
     private T[] cache;
 
-    public List<HashContainer> getHash() {
+    public List<AHashContainer> getHash() {
         return new ArrayList<>(hash);
     }
 
-    public void setHash(List<HashContainer> hash) {
+    public void setHash(List<AHashContainer> hash) {
         this.hash = new ArrayList<>(hash);
     }
 

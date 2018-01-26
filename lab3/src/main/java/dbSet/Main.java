@@ -1,7 +1,6 @@
 package dbSet;
 
-import concurrent.DBSynchronizedSet;
-import testData.MyData;
+import testData.TestData;
 
 import java.util.*;
 
@@ -12,47 +11,21 @@ public class Main {
 //        new Main().run();
 //        System.out.println("\n Required time "+(System.currentTimeMillis()-time)/100+" ds");
 
-        DBSynchronizedSet<String> set1=new DBSynchronizedSet<>(new DBSet<String>(adr,false));
-        set1.add("0");
-        set1.add("1");
-        set1.add("2");
-        set1.add("3");
-        set1.add("4");
-        set1.add("5");
-        set1.add("6");
-        System.out.println("set1="+set1);
-
-        set1.remove("1");
-        set1.remove("0");
-        System.out.println("set1="+set1);
-
-
-
-//        set1.save();
-
-//        DBSet<MyData> set2=new DBSet<MyData>(adr,true);
-//        System.out.println("set2="+Arrays.toString(set2.toArray()));
-
-//        set1=null;
-//        System.out.println("set1="+set1);
-//        System.out.println("set2="+Arrays.toString(set2.toArray()));
-
-//        long freeMemory = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory();
-//        System.out.println(freeMemory/1024/1024);
+        DBSet<String> set1=new DBSet<>(adr,false);
     }
     private void run(){
 
         String adr="/home/ivan/NetCracker/MapDB/src/main/java/Data/";
-//        DBSet<MyData> set=new DBSet<MyData>(adr,false);
+//        DBSet<TestData> set=new DBSet<TestData>(adr,false);
 //        for (int i=0;i<150_000;i++) {
-//            set.add(new MyData());
+//            set.add(new TestData());
 //        }
-        Set<MyData> trueSet=new HashSet<>();
+        Set<TestData> trueSet=new HashSet<>();
 
         int s=150_000;
-        MyData[] data=new MyData[s];
+        TestData[] data=new TestData[s];
         for(int i=0;i<s;i++) {
-            data[i]=new MyData();
+            data[i]=new TestData();
         }
 
 //        long time=System.currentTimeMillis();
@@ -66,29 +39,29 @@ public class Main {
         }
         System.out.println("trueSetSize="+trueSet.size());
 
-        DBSet<MyData> newSet=new DBSet<>(adr,false);
+        DBSet<TestData> newSet=new DBSet<>(adr,false);
 
 //        time=System.currentTimeMillis();
         for (int i=s-1;i>=0;i--) {
             newSet.add(data[i]);
         }
 //        for (int i=1; i<=150_000;i++){
-//            newSet.add(new MyData());
+//            newSet.add(new TestData());
 //        }
         System.out.println("mySetSize="+newSet.size());
 //        time=System.currentTimeMillis()-time;
 //        System.out.println("Time of mySet filling ="+time/10+" cs");
-//        trueSet.remove(new MyData());
+//        trueSet.remove(new TestData());
 //        System.out.println(newSet.removeAll(trueSet));
         newSet.removeAll(trueSet);
         System.out.println(newSet.size());
 
 
-//        DBSet<MyData> set=new DBSet<MyData>("/home/ivan/NetCracker/MapDB/src/main/java/data2/",trueSet);
-//        System.out.println(set.add(new MyData()));
+//        DBSet<TestData> set=new DBSet<TestData>("/home/ivan/NetCracker/MapDB/src/main/java/data2/",trueSet);
+//        System.out.println(set.add(new TestData()));
 
 //        time=System.currentTimeMillis();
-//        for(MyData d:trueSet){
+//        for(TestData d:trueSet){
 //            newSet.remove(d);
 //        }
 //        System.out.println("Time of mySet removing ="+(System.currentTimeMillis()-time)/100+" ds");

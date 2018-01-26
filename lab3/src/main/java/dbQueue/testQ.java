@@ -1,6 +1,6 @@
 package dbQueue;
 
-import testData.MyData;
+import testData.TestData;
 
 import java.util.HashSet;
 import java.util.Queue;
@@ -9,12 +9,12 @@ import java.util.Set;
 public class testQ {
     private static final String adr="/home/ivan/NetCracker/lab3/src/main/java/Data/";
     public static void main(String[] args) {
-        Queue<MyData> q=new DBSafeQueue<>(adr, false);
+        Queue<TestData> q=new DBQueue<>(adr, false);
 
         int s=3;
-        MyData data=new MyData();
+        TestData data=new TestData();
         for (int i=0;i<s;i++) {
-            MyData d=new MyData();
+            TestData d=new TestData();
             System.out.println(d);
             q.offer(d);
             q.offer(d);
@@ -22,11 +22,11 @@ public class testQ {
         }
         System.out.println("size="+q.size());
 
-        Set<MyData> set=new HashSet<>();
+        Set<TestData> set=new HashSet<>();
         set.add(data);
         q.retainAll(set);
 
-        for (MyData d:q){
+        for (TestData d:q){
             System.out.println(d);
         }
 

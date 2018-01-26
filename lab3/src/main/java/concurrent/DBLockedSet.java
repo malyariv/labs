@@ -46,12 +46,10 @@ public class DBLockedSet<T> implements Set<T> {
     @Override
     public boolean contains(Object o) {
         readLock.lock();
-        System.out.println("Readlock is On");
         try {
             return set.contains(o);
         }
         finally {
-            System.out.println("Readlock is Off");
             readLock.unlock();
         }
     }
@@ -86,12 +84,10 @@ public class DBLockedSet<T> implements Set<T> {
     @Override
     public boolean add(T t) {
         writeLock.lock();
-        System.out.println("Writelock is On");
         try {
             return set.add(t);
         }
         finally {
-            System.out.println("Writelock is Off");
             writeLock.unlock();
         }
     }

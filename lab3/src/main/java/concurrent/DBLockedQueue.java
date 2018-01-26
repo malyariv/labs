@@ -1,6 +1,6 @@
 package concurrent;
 
-import dbQueue.DBSafeQueue;
+import dbQueue.DBQueue;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -11,38 +11,68 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class DBLockedQueue<T> implements Queue<T> {
 
-    private final DBSafeQueue<T> q;
+    private final DBQueue<T> q;
     private final ReadWriteLock rwl=new ReentrantReadWriteLock(true);
     private final Lock readLock=rwl.readLock();
     private final Lock writeLock=rwl.writeLock();
 
-    public DBLockedQueue(DBSafeQueue<T> q) {
+    public DBLockedQueue(DBQueue<T> q) {
         this.q = q;
     }
 
     @Override
     public int size() {
-        return 0;
+        readLock.lock();
+        try {
+            return q.size();
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        readLock.lock();
+        try {
+            return q.isEmpty();
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        readLock.lock();
+        try {
+            return q.contains(o);
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        writeLock.lock();
+        try {
+            return q.iterator();
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        readLock.lock();
+        try {
+            return q.toArray();
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
@@ -52,61 +82,143 @@ public class DBLockedQueue<T> implements Queue<T> {
 
     @Override
     public boolean add(T t) {
-        return false;
+        writeLock.lock();
+        try {
+            return q.add(t);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        writeLock.lock();
+        try {
+            return q.remove(o);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
+        readLock.lock();
+        try {
+            return q.containsAll(c);
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        writeLock.lock();
+        try {
+            return q.removeAll(c);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
+
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        writeLock.lock();
+        try {
+            return q.retainAll(c);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public void clear() {
+        writeLock.lock();
+        try {
+            q.clear();
+        }
+        finally {
+            writeLock.unlock();
+        }
+    }
 
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        writeLock.lock();
+        try {
+            return q.addAll(c);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public boolean offer(T t) {
-        return false;
+        writeLock.lock();
+        try {
+            return q.offer(t);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public T remove() {
-        return null;
+        writeLock.lock();
+        try {
+            return q.remove();
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public T poll() {
-        return null;
+        writeLock.lock();
+        try {
+            return q.poll();
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 
     @Override
     public T element() {
-        return null;
+        readLock.lock();
+        try {
+            return q.element();
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public T peek() {
-        return null;
+        readLock.lock();
+        try {
+            return q.peek();
+        }
+        finally {
+            readLock.unlock();
+        }
+    }
+
+    public void recover(String from,int p){
+        writeLock.lock();
+        try {
+            q.recover(from, p);
+        }
+        finally {
+            writeLock.unlock();
+        }
     }
 }
