@@ -1,6 +1,6 @@
 package dbMap;
 
-import concurrent.DBSynchronizedMap;
+import synchronization.DBSynchronizedMap;
 import testData.TestData;
 
 import java.util.Map;

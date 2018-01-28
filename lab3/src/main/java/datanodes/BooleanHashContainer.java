@@ -1,4 +1,10 @@
 package datanodes;
+/**
+ * The class {@code BooleanHashContainer} extends {@code AHashContainer}
+ * adding a boolean array coupled with the hashcode array. A boolean value indicates
+ * the status of object: presented or to be removed.
+ * The class implements abstract methods of the parent class as add(int h), remove(int index), etc.
+ */
 
 import abstracts.AHashContainer;
 
@@ -7,48 +13,32 @@ import java.util.Arrays;
 
 public class BooleanHashContainer extends AHashContainer implements Serializable  {
 
-    private int[] array;
     private boolean[] booleans;
-    private int maxSize=0, currentSize;
 
     public BooleanHashContainer(int size){
         booleans=new boolean[size];
-        array=new int[size];
-    }
-
-    public int size(){
-        return currentSize;
-    }
-
-    @Override
-    public int realSize() {
-        return maxSize;
-    }
-
-    public boolean isFull(){
-        return maxSize==array.length;
+        hash =new int[size];
     }
 
     public void add(int i){
-        array[maxSize]=i;
+        hash[maxSize]=i;
         booleans[maxSize++]=true;
         currentSize++;
     }
 
-
-
     public int[] toArray(){
         int[] out=new int[currentSize];
         int indx=0;
-        for (int i=0;i<array.length;i++){
-            if (booleans[i]) out[indx++]=array[i];
+        for (int i = 0; i< hash.length; i++){
+            if (booleans[i]) out[indx++]= hash[i];
         }
         return out;
     }
+
     public int[] getIndices(){
         int[] out=new int[currentSize];
         int indx=0;
-        for (int i=0;i<array.length;i++){
+        for (int i = 0; i< hash.length; i++){
             if (booleans[i]) out[indx++]=i;
         }
 
@@ -59,8 +49,8 @@ public class BooleanHashContainer extends AHashContainer implements Serializable
     public int[] getHashValues() {
         int[] out=new int[currentSize];
         int indx=0;
-        for (int i=0;i<array.length;i++){
-            if (booleans[i]) out[indx++]=array[i];
+        for (int i = 0; i< hash.length; i++){
+            if (booleans[i]) out[indx++]= hash[i];
         }
 
         return out;
@@ -71,14 +61,6 @@ public class BooleanHashContainer extends AHashContainer implements Serializable
         return new int[0];
     }
 
-    //    public void remove(int element){
-//        for (int i=0;i<maxSize;i++){
-//            if (array[i]==element&&booleans[i]){
-//                booleans[i]=false;
-//                currentSize--;
-//            }
-//        }
-//    }
     public void remove(int index){
         if (booleans[index]) {
             booleans[index] = false;
@@ -90,7 +72,7 @@ public class BooleanHashContainer extends AHashContainer implements Serializable
     public int getIndex(int value){
         int ind=-1;
         for (int i=0;i<maxSize;i++){
-            if (array[i]==value&&booleans[i]) return i;
+            if (hash[i]==value&&booleans[i]) return i;
         }
         return -1;
     }
@@ -104,19 +86,9 @@ public class BooleanHashContainer extends AHashContainer implements Serializable
         throw new IllegalArgumentException("getRealIndex");
     }
 
-    public double getLoadFactor(){
-        double d1=(currentSize+0.0)/maxSize;
-        double d2=(0.0+currentSize)/array.length;
-        return Math.min(d1, d2);
-    }
-
-
-
     @Override
     public String toString() {
         return Arrays.toString(toArray());
     }
-
-
 
 }

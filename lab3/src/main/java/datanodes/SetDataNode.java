@@ -1,5 +1,8 @@
 package datanodes;
-
+/**
+ * The class {@code SetDataNode} extends {@code ADataNode} .
+ * It uses {@code BooleanHashContainer} to work with objects.
+ */
 import abstracts.*;
 import utils.*;
 
@@ -39,6 +42,7 @@ public class SetDataNode<T> extends ADataNode<T> {
     public T get(int index){
         return (T)utils.readObject(calculateFileIndex(index), calculateElementIndex(index)+1);
     }
+
     public T get(int[] index){
         return (T)utils.readObject(index[0],index[1]);
     }
@@ -115,6 +119,7 @@ public class SetDataNode<T> extends ADataNode<T> {
             case LIST: after=new ListState<>(); break;
         }
     }
+
     public void setCurrentState(States s){
         switch (s){
             case SET: currentState=new SetState<>();break;

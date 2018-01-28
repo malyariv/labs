@@ -1,4 +1,9 @@
 package utils;
+/**
+ * The class {@code FileUtilsExt} extends the class {@code FileUtils}.
+ * It implements methods to read/write an array of objects on disk using serialization.
+ * It also contains cache to increase reading objects from one block.
+ */
 
 import java.io.File;
 

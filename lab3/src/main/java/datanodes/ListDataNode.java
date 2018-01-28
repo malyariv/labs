@@ -1,4 +1,8 @@
 package datanodes;
+/**
+ * The class {@code ListDataNode} extends {@code ADataNode} .
+ * It uses {@code IndexedHashContainer} to work with objects.
+ */
 
 import abstracts.ADataNode;
 import abstracts.AHashContainer;
@@ -33,7 +37,6 @@ public class ListDataNode<T> extends ADataNode<T> {
                         continue;
                     }
                     T t=readObject(i,j);
-//                    T t = (T) utils.readObject(i, j + 1);
                     if (t.equals(o)) {
                         index = hash.get(i).getRealIndex(j);
                     }
@@ -54,7 +57,6 @@ public class ListDataNode<T> extends ADataNode<T> {
             j=hash.get(i).getIndex(index);
             if (j!=-1) {
                 return readObject(i,j);
-//                        (T)utils.readObject(i, j+1);
             }
         }
         return null;
@@ -100,6 +102,7 @@ public class ListDataNode<T> extends ADataNode<T> {
             }
         }
     }
+
     public void emptyCondition(){
         hash.add(new IndexedHashContainer(writeSize));
         writtenFilesIndex=0;
@@ -164,7 +167,6 @@ public class ListDataNode<T> extends ADataNode<T> {
                 t = (T) data;
                 int fileSize = utils.getFileSize(data);
                 writeSize = getWriteSize(fileSize);
-//                writeSize=3;
                 hash.add(new IndexedHashContainer(writeSize));
                 currentState = new ListState<>();
             } else {

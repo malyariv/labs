@@ -1,4 +1,8 @@
 package concurrent;
+/**
+ * The class {@code DBLockedCacheList} is a wrapper for {@code DBCacheList}.
+ * This class provides thread-safety by means of a {@code ReadWriteLock} object.
+ */
 
 import dbList.DBCacheList;
 
@@ -76,7 +80,13 @@ public class DBLockedCacheList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        readLock.lock();
+        try {
+            return list.toArray(a);
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override

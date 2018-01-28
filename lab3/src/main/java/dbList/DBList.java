@@ -1,9 +1,14 @@
 package dbList;
+/**
+ * The class {@code DBList}, implementing methods of interface {@code List}, is a structure
+ * to store data on HDD and basic operations of data processing as add(T t), remove(Object o), etc.
+ * It also implements method to save the current collection on disc
+ * or start working with stored data.
+ * In addition, it implements method to recover data from files written on disk.
+ */
 
 import datanodes.ListDataNode;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -55,7 +60,7 @@ public class DBList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return a;
+        return listDataNode.toArray(a);
     }
 
     @Override

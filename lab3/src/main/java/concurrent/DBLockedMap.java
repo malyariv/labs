@@ -1,5 +1,8 @@
 package concurrent;
-
+/**
+ * The class {@code DBLockedMap} is a wrapper for {@code DBMap}.
+ * This class provides thread-safety by means of a {@code ReadWriteLock} object.
+ */
 import dbMap.DBMap;
 
 import java.util.Collection;

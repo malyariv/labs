@@ -6,29 +6,27 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
+
         String adr="/home/ivan/NetCracker/lab3/src/main/java/Data/";
-        List<TestData> list=new ArrayList<>();
-        Set<TestData> set=new HashSet<>();
-        DBList<TestData> myList=new DBList<>(adr,false);
+        List<String> list=new DBList<>(adr,false);
+        list.add("0");
+        list.add("1");
+        list.add("2");
+        list.add("3");
 
-        int length=150_000;
-        TestData t=new TestData();
-        System.out.println(t);
-        list.add(t);
-        myList.add(new TestData());
+        list.remove(1);
+        list.add("4");
 
+        for (String s:list) {
+            System.out.print(s+"  ");
+        }
 
-        TestData[] a={t,t,t};
-        System.out.println(Arrays.toString(a));
         System.out.println();
-        TestData[] b=myList.toArray(new TestData[0]);
 
-//        for (int i=0;i<length;i++) {
-//            a[i]=new TestData();
-//        }
-        System.out.println(Arrays.toString(a));
-        System.out.println(Arrays.toString(b));
+        for (int i=0;i<list.size();i++) {
+            System.out.print(list.get(i)+"  ");
+        }
 
-        System.out.println(b.length);
+
     }
 }

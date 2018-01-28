@@ -1,4 +1,11 @@
 package dbMap;
+/**
+ * The class {@code DBMap}, implementing methods of interface {@code Map}, is a structure
+ * to store data on HDD and basic operations of data processing as put(), remove(), etc.
+ * It also implements method to save the current map on disc
+ * or start working with stored data.
+ * In addition, it implements method to recover data from files written on disk.
+ */
 
 import datanodes.SetDataNode;
 import utils.States;

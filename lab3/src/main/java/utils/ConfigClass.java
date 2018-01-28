@@ -1,4 +1,8 @@
 package utils;
+/**
+ * The class {@code ConfigClass} is a container to store runtime parameters
+ * of {@code DBSet}, {@code DBList}, {@code DBCacheList}, {@code DBQueue} and {@code DBMap}.
+ */
 
 import abstracts.AHashContainer;
 

@@ -1,5 +1,8 @@
 package datanodes;
-
+/**
+ * The class {@code CacheListDataNode} extends {@code ListDataNode} .
+ * It uses inner cache to store objects. Cache will be written into file when it is full.
+ */
 import utils.ConfigClass;
 import utils.FileUtils;
 import utils.FileUtilsExt;
@@ -8,6 +11,7 @@ import java.lang.reflect.Array;
 import java.util.logging.Level;
 
 public class CacheListDataNode<T> extends ListDataNode<T> {
+
     private final double blockSizeMb=2;
     private int blocksize=1, blockCounter=0;
     private AState<T> currentState=new InitialState<>();
@@ -81,7 +85,6 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
         int siz=hash.get(ind).realSize();
         if (siz!=0 && siz%blocksize==0){
             writeObject(ind, cache);
-//            Arrays.fill(cache, null);
             blockCounter++;
         }
         cacheIndex=siz%blocksize;
@@ -92,7 +95,6 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
     @Override
     public void newHashContainer() {
         super.newHashContainer();
-//        Arrays.fill(cache, null);
         blockCounter=0;
     }
 
@@ -140,9 +142,6 @@ public class CacheListDataNode<T> extends ListDataNode<T> {
         public boolean add(T1 data) {
             int fileSize=utils.getFileSize(data);
             blocksize=getBlockSize(fileSize);
-
-//            blocksize=3;
-
             t=(T) data;
             currentState= new ListState<>();
             cache=(T[]) Array.newInstance(t.getClass(), blocksize);

@@ -1,5 +1,11 @@
 package dbSet;
-
+/**
+ * The class {@code DBSet}, implementing methods of interface {@code Set}, is a structure
+ * to store data on HDD and basic operations of data processing as add(T t), remove(Object o), etc.
+ * It also implements method to save the current collection on disc
+ * or start working with stored data.
+ * In addition, it implements method to recover data from files written on disk.
+ */
 import datanodes.SetDataNode;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import utils.*;
@@ -60,7 +66,7 @@ public class DBSet<T> implements Set<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return a;
+        return setDataNode.toArray(a);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package concurrent;
-
+/**
+ * The class {@code DBLockedSet} is a wrapper for {@code DBSet}.
+ * This class provides thread-safety by means of a {@code ReadWriteLock} object.
+ */
 import dbSet.DBSet;
 
 import java.util.Arrays;
@@ -78,7 +81,13 @@ public class DBLockedSet<T> implements Set<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        readLock.lock();
+        try {
+            return set.toArray(a);
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override

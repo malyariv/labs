@@ -1,4 +1,8 @@
 package utils;
+/**
+ * The class {@code FileUtils} implements methods to work with a file system
+ * and to read/write objects on disk using serialization.
+ */
 
 import java.io.*;
 import java.util.logging.Level;

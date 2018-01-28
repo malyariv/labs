@@ -1,45 +1,29 @@
 package datanodes;
-
+/**
+ * The class {@code IndexedHashContainer} extends {@code AHashContainer}
+ * adding an int array coupled with the hashcode array. An int value indicates
+ * the index of object in collection. Value of -1 is a default value or indicates
+ * that object is removed. The class implements abstract methods of the parent class
+ * as add(int h), remove(int index), etc.
+ */
 import abstracts.AHashContainer;
-
 import java.io.Serializable;
 import java.util.Arrays;
 
 public class IndexedHashContainer extends AHashContainer implements Serializable {
 
-    private int[] hash;
     private int[] realIndex;
-    private int maxSize=0, currentSize=0, currentIndex=0;
 
     public IndexedHashContainer(int size){
         realIndex=new int[size];
         hash=new int[size];
         Arrays.fill(realIndex,-1);
     }
-    public IndexedHashContainer(int size, int start){
-        this(size);
-        currentIndex=start;
-    }
-
-
-    @Override
-    public int size() {
-        return currentSize;
-    }
-
-    public int realSize(){ return maxSize;}
-
-    @Override
-    public boolean isFull() {
-        return maxSize==hash.length;
-    }
 
     @Override
     public void add(int i) {
-        hash[maxSize]=i;
-        realIndex[maxSize++]=currentIndex++;
-        currentSize++;
     }
+
     @Override
     public void add(int val, int ind){
         hash[maxSize]=val;
@@ -140,22 +124,7 @@ public class IndexedHashContainer extends AHashContainer implements Serializable
         return realIndex[ind];
     }
 
-    @Override
-    public double getLoadFactor() {
-        double d1=(currentSize+0.0)/maxSize;
-        double d2=(0.0+currentSize)/hash.length;
-        return Math.min(d1, d2);
-    }
-
-//    public int getPosition(int ind){
-//        for (int i=0;i<maxSize;i++){
-//            if (realIndex[i]==ind) return i;
-//        }
-//        return -1;
-//    }
-
     public void setIndexOfLastElement(int index){
-        currentIndex--;
         realIndex[maxSize-1]=index;
     }
 }

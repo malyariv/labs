@@ -1,5 +1,8 @@
 package concurrent;
-
+/**
+ * The class {@code DBLockedQueue} is a wrapper for {@code DBQueue}.
+ * This class provides thread-safety by means of a {@code ReadWriteLock} object.
+ */
 import dbQueue.DBQueue;
 
 import java.util.Collection;
@@ -77,7 +80,13 @@ public class DBLockedQueue<T> implements Queue<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        readLock.lock();
+        try {
+            return q.toArray(a);
+        }
+        finally {
+            readLock.unlock();
+        }
     }
 
     @Override
