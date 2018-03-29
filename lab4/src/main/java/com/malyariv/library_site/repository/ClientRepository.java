@@ -8,4 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface ClientRepository extends CrudRepository<Client, Integer> {
+    Client findClientByEmail(String email);
 }

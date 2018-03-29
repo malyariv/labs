@@ -2,7 +2,6 @@ package com.malyariv.library_site.controller;
 
 import com.malyariv.library_site.controller.forms.RegistrationForm;
 import com.malyariv.library_site.entity.Book;
-import com.malyariv.library_site.entity.Client;
 import com.malyariv.library_site.entity.User;
 import com.malyariv.library_site.repository.BookRepository;
 import com.malyariv.library_site.repository.ClientRepository;
@@ -14,6 +13,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.util.Set;
 
 @Controller
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -36,7 +38,7 @@ public class ClientController {
         return "/user/index";
     }
 
-//    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/editProfile")
     public String editProfile(Model model){
         model.addAttribute("user", userService.getCurrentUser());
@@ -55,7 +57,9 @@ public class ClientController {
 //    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/showBooks")
     public String showBooks(Model model){
-        model.addAttribute("books", userService.getCurrentUser().getClientData().getBookSet());
+        Set<Book> books=userService.getCurrentUser().getClientData().getBookSet();
+        model.addAttribute("books", books);
+        model.addAttribute("size2",books.size());
         return "/user/showBooks";
     }
 
@@ -67,5 +71,34 @@ public class ClientController {
         bookRepository.save(book);
         return "redirect:/user";
     }
+
+    @GetMapping("/user/cancel/{id}")
+    public String cancelReservation(@PathVariable int id) {
+        Book book=bookRepository.findOne(id);
+        book.setReserved(false);
+        book.setClient(null);
+        bookRepository.save(book);
+        return "redirect:/user";
+    }
+
+    @GetMapping("/user/take/{id}")
+    public String takeBook(@PathVariable int id) {
+        Book book=bookRepository.findOne(id);
+        book.setAvailable(false);
+        book.setDeadline(new Date(System.currentTimeMillis()));
+        bookRepository.save(book);
+        return "redirect:/user";
+    }
+    @GetMapping("/user/return/{id}")
+    public String returnBook(@PathVariable int id) {
+        Book book=bookRepository.findOne(id);
+        book.setAvailable(true);
+        book.setReserved(false);
+        book.setClient(null);
+        book.setDeadline(null);
+        bookRepository.save(book);
+        return "redirect:/user";
+    }
+
 
 }

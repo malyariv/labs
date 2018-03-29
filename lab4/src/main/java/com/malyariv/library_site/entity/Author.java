@@ -19,10 +19,7 @@ public class Author {
     private String fullname;
 
 
-    @ManyToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "books_authors",
-            joinColumns = {@JoinColumn(name = "authors_id")},
-            inverseJoinColumns = {@JoinColumn(name = "books_id")})
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
     private Set<Book> books=new HashSet<>();
 
     public Author() {

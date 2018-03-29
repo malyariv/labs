@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -52,13 +54,11 @@ public class StaffController {
         Book book = new Book(bookForm);
         book.setBookLocation(location);
         System.out.println(book);
-        addAuthor(book);
-        addGenre(bookForm);
+        addAuthors(book);
+        addGenres(book);
+        bookRepository.save(book);
         return "redirect:/staff";
     }
-
-
-
 
     @PreAuthorize("hasRole('ROLE_STAFF')")
     @GetMapping("/staff/showClients")
@@ -93,61 +93,87 @@ public class StaffController {
     }
 
     @PreAuthorize("hasRole('ROLE_STAFF')")
+    @GetMapping("/staff/overdue")
+    public String overdue(Model model){
+        Iterable<Book> books=bookRepository.findAllByDeadlineBefore(new Date(System.currentTimeMillis()));
+        model.addAttribute("flag",books.iterator().hasNext());
+        model.addAttribute("books", books);
+        return "/staff/overdue";
+    }
+
+    @PreAuthorize("hasRole('ROLE_STAFF')")
     @GetMapping("/staff/showOrders")
     public String showOrders(Model model){
-        Iterable<Book> books=bookRepository.findAllByReservedIsTrue();
+        Iterable<Book> books=bookRepository.findAllByReservedIsTrueAndReadyIsFalse();
+        model.addAttribute("flag2",books.iterator().hasNext());
         model.addAttribute("books", books);
         return "/staff/showOrders";
     }
 
     @PostMapping("/staff/showOrders")
-    public String showOrders(@ModelAttribute("checkbox") Checkbox checkbox, Model model){
-
-//        if (checkbox.isReady()) {
-//
-//            return "redirect:/staff/showOrders";
-//        }
+    public String showOrders(@ModelAttribute("checkbox") Checkbox checkbox){
+        for (int val:checkbox.isReady()) {
+            Book book=bookRepository.findOne(val);
+            book.setReady(true);
+            bookRepository.save(book);
+        }
         return "redirect:/staff";
     }
 
-
-    private void addGenre(BookForm bookForm) {
-        Book book = null;
-        for (Book book1 : bookRepository.findByTitle(bookForm.getTitle())) {
-            if (book == null || book1.getId() > book.getId()) {
-                book = book1;
-            }
-        }
-
-        for (Genre genre : bookForm.getSetOfGenres()) {
-            Genre g = genreRepository.findByName(genre.getName());
-            if (g != null) {
-                g.getBooksByGenres().add(book);
-                genreRepository.save(g);
-            } else {
-                g = genre;
-                HashSet<Book> books = new HashSet<>();
-                books.add(book);
-                g.setBooksByGenres(books);
-                genreRepository.save(g);
-            }
-        }
+    @PreAuthorize("hasRole('ROLE_STAFF')")
+    @GetMapping("/staff/arrange")
+    public String arrange(Model model){
+        Iterable<Book> books=bookRepository.findAllByReservedIsFalseAndReadyIsTrue();
+        model.addAttribute("flag", books.iterator().hasNext());
+        model.addAttribute("books", books);
+        return "/staff/arrangeList";
     }
 
-    private void addAuthor(Book book) {
+    @PostMapping("/staff/arrange")
+    public String arrange(@ModelAttribute("checkbox") Checkbox checkbox){
+        for (int val:checkbox.isReady()) {
+            Book book=bookRepository.findOne(val);
+            book.setReady(false);
+            bookRepository.save(book);
+        }
+        return "redirect:/staff";
+    }
+
+    @PreAuthorize("hasRole('ROLE_STAFF')")
+    @GetMapping("/staff/delete/{id}")
+    public String delete(@PathVariable int id){
+        Book book=bookRepository.findOne(id);
+        bookRepository.delete(book);
+        return "/staff";
+    }
+
+
+    private void addGenres(Book book) {
+        Set<Genre> checked=new HashSet<>();
+        for (Genre g:book.getGenres()) {
+            Genre genre=genreRepository.findByName(g.getName());
+            if (genre!=null) {
+                checked.add(genre);
+            }
+            else {
+                checked.add(g);
+            }
+        }
+        book.setGenres(checked);
+    }
+
+    private void addAuthors(Book book) {
+        Set<Author> checked=new HashSet<>();
         for (Author author:book.getAuthors()) {
             Author auth=authorRepository.findByFullname(author.getFullname());
             if (auth!=null) {
-                auth.getBooks().add(book);
-                authorRepository.save(auth);
+                checked.add(auth);
             }
             else {
-                HashSet<Book> books = new HashSet<>();
-                books.add(book);
-                author.setBooks(books);
-                authorRepository.save(author);
+               checked.add(author);
             }
         }
+        book.setAuthors(checked);
     }
 
 }

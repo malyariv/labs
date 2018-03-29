@@ -2,17 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
-<h1>Hello ${client.firstname} ${client.lastname}! </h1>
+<body class="bg-light" style="font-size: large">
 <br>
-<a href="/user/editProfile">Edit profile</a>
+<h2 class="text-center text-primary"><b>Hello ${client.firstname} ${client.lastname}!</b></h2>
 <br>
-<a href="/user/showBooks">Show my books</a>
-<br>
-<a href="/all/bookSearch">Book search</a>
-<br>
-<a href="/logout">Logout</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <a href="/user/editProfile">
+                <button class="btn btn-danger btn-block" style="font-size: large">
+                    My profile
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-2">
+            <a href="/user/showBooks">
+                <button class="btn btn-info btn-block" style="font-size: large">
+                    My books
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-2">
+            <a href="/all/bookSearch">
+                <button class="btn btn-warning btn-block" style="font-size: large">
+                    Find books
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-2">
+            <a href="/logout">
+                <button class="btn btn-success btn-block" style="font-size: large">
+                    Logout
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

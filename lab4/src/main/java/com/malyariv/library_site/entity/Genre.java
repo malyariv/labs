@@ -15,10 +15,7 @@ public class Genre {
     private String name;
 
 
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @JoinTable(name = "books_genres",
-            joinColumns = {@JoinColumn(name = "genres_id")},
-            inverseJoinColumns = {@JoinColumn(name = "books_id")})
+    @ManyToMany(mappedBy = "genres", fetch = FetchType.EAGER)
     private Set<Book> booksByGenres =new HashSet<>();
 
     public Genre() {

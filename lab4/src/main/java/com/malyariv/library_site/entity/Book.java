@@ -3,6 +3,7 @@ package com.malyariv.library_site.entity;
 import com.malyariv.library_site.controller.forms.BookForm;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,16 +28,23 @@ public class Book {
     private boolean reserved=false;
     @Column(name = "ready")
     private boolean ready=false;
+    @Column(name = "deadline")
+    private Date deadline;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
     private Location bookLocation;
 
-    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    @ManyToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "books_authors",
+            joinColumns = {@JoinColumn(name = "books_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authors_id")})
     private Set<Author> authors=new HashSet<>();
 
-
-    @ManyToMany(mappedBy = "booksByGenres", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "books_genres",
+            joinColumns = {@JoinColumn(name = "books_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genres_id")})
     private Set<Genre> genres=new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -151,6 +159,14 @@ public class Book {
 
     public void setReady(boolean ready) {
         this.ready = ready;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
     @Override
