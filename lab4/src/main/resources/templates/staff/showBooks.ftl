@@ -29,7 +29,9 @@
             <#list books as book>
                 <tr>
                     <td>${book.id}</td>
-                    <td>${book.title}</td>
+                    <td>
+                        <a href="/all/showBook/${book.id}"> ${book.title}</a>
+                    </td>
                     <td>
                         <#list  book.authors as a>
                             ${a.fullname}
@@ -49,7 +51,9 @@
                     <td>${book.ready?string('yes', 'no')}</td>
                     <td>${book.available?string('yes', 'no')}</td>
                     <td>
-                        <a href="/staff/delete/${book.id}">Delete</a>
+                        <#if !book.reserved>
+                            <a href="/staff/delete/${book.id}">Delete</a>
+                        </#if>
                     </td>
 
                 </tr>
@@ -57,7 +61,7 @@
         </tbody>
     </table>
     <div class="container">
-        <a href="/staff">
+        <a href="/staff/books">
             <button class="btn btn-primary" style="font-size: large">
                 <i class="glyphicon glyphicon-arrow-left"></i>
                 BACK

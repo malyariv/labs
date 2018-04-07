@@ -1,6 +1,6 @@
 package com.malyariv.library_site.entity;
 
-import com.malyariv.library_site.controller.forms.Human;
+import com.malyariv.library_site.controllers.forms.Human;
 
 import javax.persistence.*;
 
@@ -18,7 +18,7 @@ public class Employee implements Human{
     @Column(name = "email",nullable = false,unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "employeeData")
+    @OneToOne(mappedBy = "employeeData", fetch = FetchType.EAGER)
     private User user;
 
     public Employee() {

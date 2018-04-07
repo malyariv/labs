@@ -1,6 +1,6 @@
 package com.malyariv.library_site.entity;
 
-import com.malyariv.library_site.controller.forms.Human;
+import com.malyariv.library_site.controllers.forms.Human;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -19,13 +19,15 @@ public class Client implements Human{
     private String lastname;
     @Column(name = "email", unique = true, nullable = false)
     private String email;
+    @Column(name = "counter")
+    private int counter;
 
 
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "clientData")
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "clientData", fetch = FetchType.EAGER)
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Book> bookSet=new HashSet<>();
 
     public Client() {
@@ -40,7 +42,6 @@ public class Client implements Human{
     public void setId(int id) {
         this.id = id;
     }
-
 
     public String getFirstname() {
         return firstname;
@@ -80,5 +81,17 @@ public class Client implements Human{
 
     public void setBookSet(Set<Book> bookSet) {
         this.bookSet = bookSet;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public void increment(){
+        counter++;
     }
 }

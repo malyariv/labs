@@ -13,7 +13,10 @@ public class Genre {
     private int id;
     @Column(name = "name",unique = true,nullable = false)
     private String name;
-
+    @Column(name = "demand")
+    private int demand=0;
+    @Column(name = "counter")
+    private int counter=0;
 
     @ManyToMany(mappedBy = "genres", fetch = FetchType.EAGER)
     private Set<Book> booksByGenres =new HashSet<>();
@@ -41,12 +44,32 @@ public class Genre {
         this.name = name;
     }
 
+    public int getCounter() {
+        return counter;
+    }
+
+    public int getDemand() {
+        return demand;
+    }
+
+    public void setDemand(int demand) {
+        this.demand = demand;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
     public Set<Book> getBooksByGenres() {
         return booksByGenres;
     }
 
     public void setBooksByGenres(Set<Book> booksByGenres) {
         this.booksByGenres = booksByGenres;
+    }
+
+    public void increment(){
+        demand++;
     }
 
     @Override

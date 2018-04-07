@@ -14,7 +14,13 @@
         <div class="col-md-3">
             <a href="/admin/showEmployees">
                 <button class="btn btn-primary btn-block" style="font-size: large">
-                    List of employees
+                    <i class="glyphicon glyphicon-list"> List of employees</i>
+                </button>
+            </a>
+            <br>
+            <a href="/admin/employeeSearch">
+                <button class="btn btn-warning btn-block" style="font-size: large">
+                    <i class="glyphicon glyphicon-search"> Find an employee</i>
                 </button>
             </a>
         </div>
@@ -23,9 +29,10 @@
         </div>
         <div class="col-md-3">
             <a href="/admin/registration">
-                <button class="btn btn-warning btn-block" style="font-size: large">
-                    New employee
+                <button class="btn btn-success btn-block" style="font-size: large">
+                    <i class="glyphicon glyphicon-user"> New employee</i>
                 </button>
+
             </a>
         </div>
         <div class="col-md-1">
@@ -33,8 +40,8 @@
 
         <div class="col-md-3">
             <a href="/logout">
-                <button class="btn btn-success btn-block" style="font-size: large">
-                    Logout
+                <button class="btn btn-danger btn-block" style="font-size: large">
+                    <i class="glyphicon glyphicon-log-out"> Logout</i>
                 </button>
             </a>
         </div>

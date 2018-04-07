@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body class="bg-light" style="font-size: large">
-<#if size!=0>
+<#if flag>
     <br>
     <h2 class="text-center text-info"><b>We have the following books for you</b></h2>
     <br>
@@ -19,15 +19,24 @@
                 <th>Publisher</th>
                 <th>Year</th>
                 <th>Pages</th>
+                <#if role=='ROLE_STAFF'>
+                    <th>Reserved</th>
+                    <th>Ready</th>
+                    <th>Available</th>
+                    <th class="text-white">Operations</th>
+                </#if>
                 <#if role=='ROLE_USER'>
                 <th class="text-white">Operations</th>
                 </#if>
+
             </tr>
         </thead>
         <tbody>
             <#list bookList as book>
                 <tr>
-                    <td>${book.title}</td>
+                    <td>
+                        <a href="/all/showBook/${book.id}">${book.title}</a>
+                    </td>
                     <td>
                         <#list  book.authors as a>
                         ${a.fullname}
@@ -43,11 +52,25 @@
                     <td>${book.publisher}</td>
                     <td>${book.year}</td>
                     <td>${book.pages}</td>
-                    <#if role='ROLE_USER'>
-                    <td>
-                        <a href="/user/reserve/${book.id}">Reservation</a>
-                    </td>
+                    <#if role='ROLE_STAFF'>
+                        <td>${book.reserved?string('yes', 'no')}</td>
+                        <td>${book.ready?string('yes', 'no')}</td>
+                        <td>${book.available?string('yes', 'no')}</td>
+                        <td>
+                            <#if !book.reserved>
+                                <a href="/staff/delete/${book.id}">Delete</a>
+                            </#if>
+                        </td>
                     </#if>
+                    <#if role='ROLE_USER'>
+                        <td>
+                            <#if !book.reserved>
+                                <a href="/user/reserve/${book.id}">Reservation</a>
+                            </#if>
+                        </td>
+                    </#if>
+
+
                 </tr>
             </#list>
         </tbody>

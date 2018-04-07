@@ -79,7 +79,7 @@
     </div>
 </#if>
     <div class="container">
-        <a href="/staff">
+        <a href="/staff/books">
             <button class="btn btn-primary" style="font-size: large">
                 <i class="glyphicon glyphicon-arrow-left"></i>
                 BACK

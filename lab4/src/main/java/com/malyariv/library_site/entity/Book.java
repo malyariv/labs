@@ -1,6 +1,6 @@
 package com.malyariv.library_site.entity;
 
-import com.malyariv.library_site.controller.forms.BookForm;
+import com.malyariv.library_site.controllers.forms.BookForm;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,6 +30,10 @@ public class Book {
     private boolean ready=false;
     @Column(name = "deadline")
     private Date deadline;
+    @Column(name = "cover")
+    private String cover;
+    @Column(name = "counter")
+    private int counter;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
@@ -167,6 +171,26 @@ public class Book {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public void increment(){
+        counter++;
     }
 
     @Override

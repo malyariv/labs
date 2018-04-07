@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface AuthorRepository extends CrudRepository<Author, Integer>{
-    Author findByFullname(String fullname);
+    Author findByFullnameContains(String fullname);
 }

@@ -15,7 +15,11 @@
                     It is The Bodleian Library site. Joking! It is a site which simulates a library. Anyway, here you can find and order some books.
                 </p>
                 <br>
-                <a href="/all/bookSearch" class="btn btn-warning" style="font-size: large">Book search</a>
+                <a href="/all/bookSearch">
+                    <button class="btn btn-warning" style="font-size: large">
+                        <i class="glyphicon glyphicon-search"> Book search</i>
+                    </button>
+                </a>
             </div>
             <div class="col-md-3 form-group">
                 <form name="login" action="/login" method="post">
@@ -37,5 +41,24 @@
     </div>
 <div class="container">
     <h2 class="text-danger">${error!""}</h2>
+</div>
+<div class="container">
+    <br>
+    <br>
+    <h2 class="text-center text-primary"><b>The most popular books</b></h2>
+    <br>
+    <div class="row">
+        <#list top as book>
+            <div class="col-md-3">
+                <a href="/all/showBook/${book.id}">
+                    <img src="${book.cover}" height="400" width="250">
+                </a>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </#list>
+        </div>
+    </div>
+</div>
 </body>
 </html>

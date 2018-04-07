@@ -28,10 +28,10 @@
                     <td>${user.clientData.firstname} ${user.clientData.lastname}</td>
                     <td>${user.enabled?string('yes', 'no')}</td>
                     <td>
-                        <#list user.clientData.bookSet as book>
-                            "${book.title}"
-                            <br>
-                        </#list>
+                            <#list user.clientData.bookSet as book>
+                                "${book.title}"
+                                <br>
+                            </#list>
                     </td>
                     <td>
                         <a href="/delete/${user.id}">Delete</a>
@@ -49,7 +49,7 @@
         </tbody>
     </table>
     <div class="container">
-        <a href="/staff">
+        <a href="/staff/clients">
             <button class="btn btn-primary" style="font-size: large">
                 <i class="glyphicon glyphicon-arrow-left"></i>
                 BACK

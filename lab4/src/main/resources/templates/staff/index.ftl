@@ -12,48 +12,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <h3 class="text-info text-center"><b>Books</b></h3>
             <br>
-            <a href="/staff/addBook">
-                <button class="btn btn-info btn-block" style="font-size: large">
-                    Add new book
-                </button>
-            </a>
-            <br>
-            <a href="/staff/showBooks">
-                <button class="btn btn-info btn-block" style="font-size: large">
-                    Show all books
-                </button>
-            </a>
-            <br>
-            <a href="/staff/arrange">
-                <button class="btn btn-info btn-block" style="font-size: large">
-                    Arrange books
-                </button>
-            </a>
-        </div>
-
-        <div class="col-md-1">
-        </div>
-
-        <div class="col-md-3">
-            <h3 class="text-warning text-center"><b>Clients</b></h3>
-            <br>
-            <a href="/staff/showClients">
-                <button class="btn btn-warning btn-block" style="font-size: large">
-                    Show clients
-                </button>
-            </a>
-            <br>
-            <a href="/staff/showOrders">
-                <button class="btn btn-warning btn-block" style="font-size: large">
-                    Show orders
-                </button>
-            </a>
-            <br>
-            <a href="/staff/overdue">
-                <button class="btn btn-warning btn-block" style="font-size: large">
-                    Overdue books
+            <a href="/staff/books">
+                <button class="btn btn-primary btn-block" style="font-size: 250%">
+                    <i class="glyphicon glyphicon-book"> Books</i>
                 </button>
             </a>
         </div>
@@ -61,12 +23,19 @@
         </div>
         <div class="col-md-3">
             <br>
-            <br>
-            <br>
+            <a href="/staff/clients">
+                <button class="btn btn-warning btn-block" style="font-size: 250%">
+                    <i class="glyphicon glyphicon-user"> Clients</i>
+                </button>
+            </a>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3">
             <br>
             <a href="/logout">
-                <button class="btn btn-success btn-block" style="font-size: large">
-                    Logout
+                <button class="btn btn-danger btn-block" style="font-size: 250%">
+                    <i class="glyphicon glyphicon-log-out"> Logout</i>
                 </button>
             </a>
         </div>

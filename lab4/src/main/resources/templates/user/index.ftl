@@ -13,8 +13,8 @@
     <div class="row">
         <div class="col-md-2">
             <a href="/user/editProfile">
-                <button class="btn btn-danger btn-block" style="font-size: large">
-                    My profile
+                <button class="btn btn-success btn-block" style="font-size: large">
+                    <i class="glyphicon glyphicon-user"> My profile</i>
                 </button>
             </a>
         </div>
@@ -25,7 +25,7 @@
         <div class="col-md-2">
             <a href="/user/showBooks">
                 <button class="btn btn-info btn-block" style="font-size: large">
-                    My books
+                    <i class="glyphicon glyphicon-book"> My books</i>
                 </button>
             </a>
         </div>
@@ -36,7 +36,7 @@
         <div class="col-md-2">
             <a href="/all/bookSearch">
                 <button class="btn btn-warning btn-block" style="font-size: large">
-                    Find books
+                    <i class="glyphicon glyphicon-search"> Find books</i>
                 </button>
             </a>
         </div>
@@ -46,8 +46,8 @@
 
         <div class="col-md-2">
             <a href="/logout">
-                <button class="btn btn-success btn-block" style="font-size: large">
-                    Logout
+                <button class="btn btn-danger btn-block" style="font-size: large">
+                    <i class="glyphicon glyphicon-log-out"> Logout</i>
                 </button>
             </a>
         </div>

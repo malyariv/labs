@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 form-group">
-            <form name="addbook" action="/staff/addBook" method="post">
+            <form name="addbook" action="/staff/addBook" method="post" enctype="multipart/form-data">
                 <br>
                 <label><b>Title</b></label>
                 <input title="Title" type="text" name="title" class="form-control" required>
@@ -39,11 +39,14 @@
                 <label><b>Shelf</b></label>
                 <input title="Shelf" type="text" name="shelf" class="form-control" required>
                 <br>
+                <label><b>Cover upload</b></label>
+                <input type="file" name="file" class="btn" style="font-size: large">
+                <br>
                 <input type="submit" value="Ok" class="btn btn-success btn-block" style="font-size: large">
             </form>
             <br>
             <br>
-            <a href="/staff">
+            <a href="/staff/books">
                 <button class="btn btn-primary" style="font-size: large">
                     <i class="glyphicon glyphicon-arrow-left"></i>
                     BACK

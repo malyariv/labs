@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label class="control-label col-md-4"><b>Choose identification parameter</b></label>
                 <div class="col-md-5">
-                    <input type="text" name="type" list="by" required class="form-control">
+                    <input type="text" name="type" list="by" class="form-control">
                 </div>
             </div>
             <div class="form-group">

@@ -1,6 +1,6 @@
 package com.malyariv.library_site.entity;
 
-import com.malyariv.library_site.controller.forms.BookForm;
+import com.malyariv.library_site.controllers.forms.BookForm;
 
 import javax.persistence.*;
 
@@ -19,7 +19,7 @@ public class Location {
     @Column(name = "shelf",nullable = false)
     private int shelf;
 
-    @OneToOne(mappedBy = "bookLocation")
+    @OneToOne(mappedBy = "bookLocation", fetch = FetchType.EAGER)
     private Book book;
 
     public Location() {

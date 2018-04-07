@@ -44,16 +44,12 @@
                     <td>${book.pages}</td>
                     <td>${book.reserved?string('yes', 'no')}</td>
                     <td>
-                        <#if book.available ==true>
+                        <#if book.reserved ==true&& book.available ==true>
                             <a href="/user/cancel/${book.id}">Cancel reservation</a>
                             <br>
                         </#if>
                         <#if book.ready ==true && book.available ==true>
-                            <a href="/user/take/${book.id}">Take</a>
-                            <br>
-                        </#if>
-                        <#if book.available ==false>
-                            <a href="/user/return/${book.id}">Return</a>
+                            You can take it
                             <br>
                         </#if>
                     </td>

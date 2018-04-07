@@ -1,10 +1,8 @@
 package com.malyariv.library_site.entity;
 
 
-import com.malyariv.library_site.controller.forms.Human;
-import com.malyariv.library_site.controller.forms.RegistrationForm;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.malyariv.library_site.controllers.forms.Human;
+import com.malyariv.library_site.controllers.forms.RegistrationForm;
 
 import javax.persistence.*;
 
@@ -19,16 +17,19 @@ public class User{
     private String username;
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "role")
-    private String role=Roles.ROLE_USER.name();
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     @Column(name = "enabled")
     private boolean enabled=true;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client clientData;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
     private Employee employeeData;
 
@@ -46,9 +47,7 @@ public class User{
             clientData=(Client) human;
         } else {
             employeeData=(Employee) human;
-            role=Roles.ROLE_STAFF.name();
         }
-
     }
 
     public int getId() {
@@ -75,11 +74,11 @@ public class User{
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
